@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:mooc_app/pages/home_page.dart';
 import 'package:mooc_app/pages/login_page.dart';

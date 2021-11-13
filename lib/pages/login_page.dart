@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mooc_app/pages/signup_page.dart';
-import 'package:flutter_signin_button/flutter_home_page.dart';
+import 'package:mooc_app/pages/home_page.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 
@@ -106,7 +107,7 @@ class _LoginPageState extends State<LoginPage> {
                   color: Colors.white,
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => SignUpPage()));
+                        MaterialPageRoute(builder: (context) => HomePage()));
                   },
                   child: Text(
                     "Login",
@@ -137,6 +138,28 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               )
               ),
+              Container(
+                child: MaterialButton(
+                  height: 50,
+                  minWidth: double.infinity,
+                  color: Colors.white,
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => HomePage()));
+                  },
+                  child: Text(
+                    "Sign In With Google",
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.black,
+                    ),
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
+              ),
+              
             ],
           ),
         ),
