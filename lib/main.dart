@@ -20,8 +20,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       routes: {
-        "/": (context) => VideoDetail(),
-        "/signup": (context) => SignupPage(),
+        "/": (context) => LoginPage(),
+        "/signup": (context) => SignUpPage(),
         "/home": (context) => HomePage(),
         "/profile": (context) => UserProfile(),
         "/video": (context) => VideoDetail(),

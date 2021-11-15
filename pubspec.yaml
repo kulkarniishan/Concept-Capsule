@@ -14,18 +14,18 @@ dependencies:
   chewie: 
   video_player: 
   firebase_core: "0.7.0"
-
-
+  flutter_signin_button: ^2.0.0
+  gestures: ^0.0.1
+  flutter_linkify: ^5.0.2
   cupertino_icons: ^1.0.2
+  
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
 
-
 flutter:
   uses-material-design: true
   assets:
     - assets/images/
-

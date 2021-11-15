@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mooc_app/pages/signup_page.dart';
+import 'package:mooc_app/pages/home_page.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -20,6 +24,9 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     double Width1 = MediaQuery.of(context).size.width;
     double Height1 = MediaQuery.of(context).size.height;
+
+    final linkStyle = new TextStyle(color: Colors.blue);
+
     final emailField = TextFormField(
       autofocus: false,
       controller: emailController,
@@ -93,14 +100,14 @@ class _LoginPageState extends State<LoginPage> {
                   passwordField,
                 ]),
               ),
+              
               Container(
                 child: MaterialButton(
-                  minWidth: double.infinity,
                   height: 50,
                   color: Colors.white,
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => SignupPage()));
+                        MaterialPageRoute(builder: (context) => HomePage()));
                   },
                   child: Text(
                     "Login",
@@ -110,10 +117,49 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50),
+                    borderRadius: BorderRadius.circular(20),
                   ),
                 ),
               ),
+              Container(
+                child:RichText(
+                text: TextSpan(
+                  children: <TextSpan>[
+                    TextSpan(text: 'Don’t have an account? '),
+                    TextSpan(
+                        text: 'Sign Up',
+                        style: linkStyle,
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => SignUpPage()));
+                          }),
+                  ],
+                ),
+              )
+              ),
+              Container(
+                child: MaterialButton(
+                  height: 50,
+                  minWidth: double.infinity,
+                  color: Colors.white,
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => HomePage()));
+                  },
+                  child: Text(
+                    "Sign In With Google",
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.black,
+                    ),
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
+              ),
+              
             ],
           ),
         ),
