@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:mooc_app/pages/home_page.dart';
+import 'package:mooc_app/pages/main_page.dart';
 import 'package:mooc_app/pages/login_page.dart';
 import 'package:mooc_app/pages/signup_page.dart';
-import 'package:mooc_app/pages/user_profile.dart';
-import 'package:mooc_app/pages/video_detail.dart';
+import 'package:mooc_app/pages/SubPages/user_profile.dart';
+import 'package:mooc_app/pages/SubPages/video_detail.dart';
 
 void main() {
   runApp(MyApp());
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       routes: {
         "/": (context) => LoginPage(),
         "/signup": (context) => SignUpPage(),
-        "/home": (context) => HomePage(),
+        "/home": (context) => MainPage(),
         "/profile": (context) => UserProfile(),
         "/video": (context) => VideoDetail(),
       },

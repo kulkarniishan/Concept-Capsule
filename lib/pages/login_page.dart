@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mooc_app/pages/signup_page.dart';
-import 'package:mooc_app/pages/home_page.dart';
+import 'package:mooc_app/pages/main_page.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
@@ -100,14 +100,13 @@ class _LoginPageState extends State<LoginPage> {
                   passwordField,
                 ]),
               ),
-              
               Container(
                 child: MaterialButton(
                   height: 50,
                   color: Colors.white,
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => HomePage()));
+                        MaterialPageRoute(builder: (context) => MainPage()));
                   },
                   child: Text(
                     "Login",
@@ -122,7 +121,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               Container(
-                child:RichText(
+                  child: RichText(
                 text: TextSpan(
                   children: <TextSpan>[
                     TextSpan(text: 'Don’t have an account? '),
@@ -131,13 +130,14 @@ class _LoginPageState extends State<LoginPage> {
                         style: linkStyle,
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => SignUpPage()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SignUpPage()));
                           }),
                   ],
                 ),
-              )
-              ),
+              )),
               Container(
                 child: MaterialButton(
                   height: 50,
@@ -145,7 +145,7 @@ class _LoginPageState extends State<LoginPage> {
                   color: Colors.white,
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => HomePage()));
+                        MaterialPageRoute(builder: (context) => MainPage()));
                   },
                   child: Text(
                     "Sign In With Google",
@@ -159,7 +159,6 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
-              
             ],
           ),
         ),
