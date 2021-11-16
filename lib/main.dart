@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mooc_app/pages/main_page.dart';
 import 'package:mooc_app/pages/login_page.dart';
@@ -5,7 +6,8 @@ import 'package:mooc_app/pages/signup_page.dart';
 import 'package:mooc_app/pages/SubPages/user_profile.dart';
 import 'package:mooc_app/pages/SubPages/video_detail.dart';
 
-void main() {
+void main() async {
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -18,6 +20,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        errorColor: Color.fromARGB(200, 255, 255, 255),
       ),
       routes: {
         "/": (context) => LoginPage(),
