@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:mooc_app/pages/main_page.dart';
 import 'package:mooc_app/pages/login_page.dart';
+import 'package:mooc_app/pages/main_page.dart';
 import 'package:mooc_app/routing_constants.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
     case HOME_ROUTE:
-      return MaterialPageRoute(builder: (context) => HomePage());
+      return MaterialPageRoute(builder: (context) => MainPage());
     case LOGIN_ROUTE:
       return MaterialPageRoute(builder: (context) => LoginPage());
     default:

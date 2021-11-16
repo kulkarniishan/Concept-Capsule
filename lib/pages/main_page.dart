@@ -39,7 +39,8 @@ class _MainPageState extends State<MainPage> {
               icon: Icon(Icons.video_call),
               label: 'Video',
             ),
-          ]),
+          ]
+        ),
     );
   }
 }
