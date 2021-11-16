@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mooc_app/pages/SubPages/main_page.dart';
+import 'package:mooc_app/pages/SubPages/home_page.dart';
 import 'package:mooc_app/pages/SubPages/user_profile.dart';
 import 'package:mooc_app/pages/SubPages/video_detail.dart';
 
@@ -39,7 +39,8 @@ class _MainPageState extends State<MainPage> {
               icon: Icon(Icons.video_call),
               label: 'Video',
             ),
-          ]),
+          ]
+        ),
     );
   }
 }
