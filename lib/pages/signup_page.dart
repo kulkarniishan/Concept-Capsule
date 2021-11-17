@@ -84,7 +84,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
           print(userCredential);
         } on FirebaseAuthException catch (e) {
-          if (e.code == 'user-not-found') {
+          if (e.code == 'user-not-foun') {
             print('No user found for that email.');
           } else if (e.code == 'wrong-password') {
             print('Wrong password provided for that user.');
