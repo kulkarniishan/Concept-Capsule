@@ -28,9 +28,10 @@ class _LoginPageState extends State<LoginPage> {
       if (user == null) {
         print('User is currently signed out!');
       } else {
-        Navigator.push(
+        Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(builder: (context) => MainPage()),
+          (route) => false,
         );
         print('User is signed in!');
       }
@@ -77,9 +78,10 @@ class _LoginPageState extends State<LoginPage> {
           );
 
           if (userCredential.user != null) {
-            Navigator.push(
+            Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(builder: (context) => MainPage()),
+              (route) => false,
             );
           }
           print(userCredential);
@@ -218,10 +220,12 @@ class _LoginPageState extends State<LoginPage> {
                           style: linkStyle,
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => SignUpPage()));
+                              Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SignUpPage()),
+                                (route) => false,
+                              );
                             }),
                     ],
                   ),

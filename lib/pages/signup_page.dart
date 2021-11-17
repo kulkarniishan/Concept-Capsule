@@ -30,9 +30,10 @@ class _SignUpPageState extends State<SignUpPage> {
         print('User is currently signed out!');
       } else {
         print('User is signed in!');
-        Navigator.push(
+        Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(builder: (context) => MainPage()),
+          (route) => false,
         );
       }
     });
@@ -242,10 +243,12 @@ class _SignUpPageState extends State<SignUpPage> {
                           style: linkStyle,
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => LoginPage()));
+                              Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LoginPage()),
+                                (route) => false,
+                              );
                             }),
                     ],
                   ),
