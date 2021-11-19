@@ -49,6 +49,7 @@ class _UserProfileState extends State<UserProfile> {
       appBar: AppBar(
         title: Text("User Profile"),
         centerTitle: true,
+        automaticallyImplyLeading: false,
       ),
       body: FutureBuilder(
         future: checkAuthentication(),
