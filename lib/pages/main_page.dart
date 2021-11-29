@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mooc_app/pages/SubPages/course_page.dart';
 import 'package:mooc_app/pages/SubPages/home_page.dart';
 import 'package:mooc_app/pages/SubPages/user_profile.dart';
 import 'package:mooc_app/pages/SubPages/video_detail.dart';
@@ -17,6 +18,7 @@ class _MainPageState extends State<MainPage> {
     HomePage(),
     UserProfile(),
     VideoDetail(),
+    CoursePage(),
   ];
 
   @override
@@ -24,23 +26,33 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       body: screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
           currentIndex: currentIndex,
           onTap: (index) => setState(() => currentIndex = index),
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: Icon(
+                Icons.home,
+              ),
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person),
+              icon: Icon(
+                Icons.person,
+              ),
               label: 'Profile',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.video_call),
+              icon: Icon(
+                Icons.video_call,
+              ),
               label: 'Video',
             ),
-          ]
-        ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.book_online),
+              label: 'Course',
+            ),
+          ]),
     );
   }
 }
