@@ -196,103 +196,119 @@ class _SignUpPageState extends State<SignUpPage> {
                   Color.fromRGBO(42, 53, 81, 1),
                 ]),
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              Container(
-                padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height / 10),
-                child: Image(
-                  image: AssetImage('assets/images/capsule.png'),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height / 10,
+                  ),
+                  child: Image(
+                    image: AssetImage(
+                      'assets/logo/logo-no-glow.png',
+                    ),
+                    width: 300,
+                  ),
                 ),
-              ),
-              Container(
-                child: Form(
-                  key: _formKey,
-                  child: Column(children: [
-                    nameField,
-                    emailField,
-                    passwordField,
-                  ]),
+                Container(
+                  child: Form(
+                    key: _formKey,
+                    child: Column(children: [
+                      nameField,
+                      emailField,
+                      passwordField,
+                    ]),
+                  ),
                 ),
-              ),
-              Container(
-                child: MaterialButton(
-                  height: 40,
-                  color: Colors.white,
-                  onPressed: SignUp,
-                  child: Text(
-                    "Sign Up",
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.black,
+                Container(
+                  margin: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height / 20,
+                  ),
+                  child: MaterialButton(
+                    height: 40,
+                    color: Colors.white,
+                    onPressed: SignUp,
+                    child: Text(
+                      "Login",
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.black,
+                      ),
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
                     ),
                   ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
+                ),
+                Container(
+                  margin: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height / 20,
+                  ),
+                  child: RichText(
+                    text: TextSpan(
+                      children: <TextSpan>[
+                        TextSpan(text: 'Already have an account? '),
+                        TextSpan(
+                            text: 'Login',
+                            style: linkStyle,
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => LoginPage()),
+                                  (route) => false,
+                                );
+                              }),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Container(
-                child: RichText(
-                  text: TextSpan(
-                    children: <TextSpan>[
-                      TextSpan(text: 'Already have an account? '),
-                      TextSpan(
-                          text: 'Login',
-                          style: linkStyle,
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => LoginPage()),
-                                (route) => false,
-                              );
-                            }),
-                    ],
-                  ),
-                ),
-              ),
-              Container(
-                  child: Padding(
-                padding: const EdgeInsets.only(
-                  left: 20,
-                  right: 20,
-                ),
-                child: MaterialButton(
-                  height: 50,
-                  minWidth: double.infinity,
-                  color: Colors.white,
-                  onPressed: () {},
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Container(
-                        width: 50.0,
-                        height: 45.0,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage(
-                                "assets/button_icons/google-icon.png"),
-                          ),
+                Container(
+                    margin: EdgeInsets.only(
+                      top: MediaQuery.of(context).size.height / 20,
+                      bottom: MediaQuery.of(context).size.height / 50,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                        left: 20,
+                        right: 20,
+                      ),
+                      child: MaterialButton(
+                        height: 50,
+                        minWidth: double.infinity,
+                        color: Colors.white,
+                        onPressed: () {},
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Container(
+                              width: 50.0,
+                              height: 45.0,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage(
+                                      "assets/button_icons/google-icon.png"),
+                                ),
+                              ),
+                            ),
+                            Text(
+                              "Sign In With Google",
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ],
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
                         ),
                       ),
-                      Text(
-                        "Sign In With Google",
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ],
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                ),
-              )),
-            ],
+                    )),
+              ],
+            ),
           ),
         ),
       ),

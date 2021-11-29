@@ -18,6 +18,7 @@ dependencies:
   gestures: ^0.0.1
   flutter_linkify: ^5.0.2
   cupertino_icons: ^1.0.2
+  flutter_svg: ^0.23.0+1
 
   firebase_auth: ^3.2.0
 
@@ -34,3 +35,4 @@ flutter:
   assets:
     - assets/images/
     - assets/button_icons/
+    - assets/logo/

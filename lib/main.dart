@@ -1,10 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:mooc_app/pages/main_page.dart';
-import 'package:mooc_app/pages/login_page.dart';
-import 'package:mooc_app/pages/signup_page.dart';
-import 'package:mooc_app/pages/SubPages/user_profile.dart';
-import 'package:mooc_app/pages/SubPages/video_detail.dart';
+import 'package:mooc_app/pages/landing_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,13 +19,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         errorColor: Color.fromARGB(200, 255, 255, 255),
       ),
-      routes: {
-        "/": (context) => LoginPage(),
-        "/signup": (context) => SignUpPage(),
-        "/home": (context) => MainPage(),
-        "/profile": (context) => UserProfile(),
-        "/video": (context) => VideoDetail(),
-      },
+      home: LandingPage(),
     );
   }
 }

@@ -37,9 +37,12 @@ class _UserProfileState extends State<UserProfile> {
     await Firebase.initializeApp();
 
     await auth.signOut();
-    Navigator.push(
+    Navigator.pushAndRemoveUntil(
       context,
-      MaterialPageRoute(builder: (context) => LoginPage()),
+      MaterialPageRoute(
+        builder: (context) => LoginPage(),
+      ),
+      (route) => false,
     );
   }
 
