@@ -6,6 +6,7 @@ import 'package:mooc_app/pages/main_page.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SignUpPage extends StatefulWidget {
   SignUpPage({Key? key}) : super(key: key);
@@ -22,6 +23,9 @@ class _SignUpPageState extends State<SignUpPage> {
 
   late FirebaseAuth auth;
   //Firebase Auth
+
+  final CollectionReference users =
+      FirebaseFirestore.instance.collection('users');
 
   checkAuthentication() async {
     await Firebase.initializeApp();
@@ -77,18 +81,26 @@ class _SignUpPageState extends State<SignUpPage> {
             email: emailController.text,
             password: passwordController.text,
           );
+
           User? user = userCredential.user;
           print(user);
+
+          await users.doc(user?.uid).set({
+            'email': emailController.text,
+            'name': nameController.text,
+          });
 
           print(user!.updateDisplayName(nameController.text));
 
           print(userCredential);
         } on FirebaseAuthException catch (e) {
-          if (e.code == 'user-not-found') {
-            print('No user found for that email.');
-          } else if (e.code == 'wrong-password') {
-            print('Wrong password provided for that user.');
+          if (e.code == 'weak-password') {
+            print('The password provided is too weak.');
+          } else if (e.code == 'email-already-in-use') {
+            print('The account already exists for that email.');
           }
+        } catch (error) {
+          print("Failed to add user in firestore: $error");
         }
       }
     }
@@ -230,7 +242,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     color: Colors.white,
                     onPressed: SignUp,
                     child: Text(
-                      "Login",
+                      "Sign Up",
                       style: TextStyle(
                         fontSize: 18,
                         color: Colors.black,
