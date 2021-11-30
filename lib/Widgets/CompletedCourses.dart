@@ -13,8 +13,8 @@ class CompletedCourses extends StatelessWidget {
         .instance
         .collection('users')
         .doc(userId)
-        .collection('enrolledCourse')
-        .where('isCompleted', isEqualTo: true);
+        .collection('enrolledCourses')
+        .where('complete', isEqualTo: true);
     return FutureBuilder<QuerySnapshot>(
         future: completedCourse.get(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -52,7 +52,7 @@ class CompletedCourses extends StatelessWidget {
                           ),
                           SizedBox(height: 5),
                           Text(
-                            enCourse['instructor'].join(', ').toUpperCase(),
+                            enCourse['instructor'].toUpperCase(),
                             style: TextStyle(
                               fontSize: 17,
                               color: Color.fromRGBO(0, 0, 0, 0.6),

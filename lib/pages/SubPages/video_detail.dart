@@ -1,9 +1,23 @@
 import 'package:chewie/chewie.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoDetail extends StatefulWidget {
-  VideoDetail({Key? key}) : super(key: key);
+  final String videoLink;
+  final String userId;
+  final String enrolledId;
+  final String contentId;
+
+  VideoDetail(
+      {Key? key,
+      required this.videoLink,
+      required this.userId,
+      required this.enrolledId,
+      required this.contentId})
+      : super(key: key);
+
+  // VideoDetail({Key? key}) : super(key: key);
 
   @override
   _VideoDetailState createState() => _VideoDetailState();
@@ -13,11 +27,29 @@ class _VideoDetailState extends State<VideoDetail> {
   late VideoPlayerController _controller;
   late ChewieController _chewieController;
 
+  CollectionReference users = FirebaseFirestore.instance.collection('users');
+
+  void videoProgressCheck() {
+    if (_controller.value.position.inMilliseconds >=
+        _controller.value.duration.inMilliseconds * .85) {
+      users
+          .doc(widget.userId)
+          .collection("enrolledCourse")
+          .doc(widget.enrolledId)
+          .update({
+            "completedContent":
+                FieldValue.arrayUnion(widget.contentId as dynamic)
+          })
+          .then((value) => print("completedContent Updated"))
+          .catchError((err) => print("Failed to update completedContent: $err"));
+    }
+  }
+
   @override
   void initState() {
     _controller = VideoPlayerController.network(
-      'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
-    );
+        "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4");
+    _controller.addListener(videoProgressCheck);
     _chewieController = ChewieController(
       videoPlayerController: _controller,
       aspectRatio: 5 / 8,
@@ -40,7 +72,6 @@ class _VideoDetailState extends State<VideoDetail> {
   @override
   void dispose() {
     _chewieController.dispose();
-
     super.dispose();
   }
 
