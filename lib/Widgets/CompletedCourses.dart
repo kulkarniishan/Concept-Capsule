@@ -9,14 +9,16 @@ class CompletedCourses extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final CollectionReference completedCourse = FirebaseFirestore.instance
+    final Query<Map<String, dynamic>> completedCourse = FirebaseFirestore
+        .instance
         .collection('users')
         .doc(userId)
-        .collection('completedCourse');
+        .collection('enrolledCourse')
+        .where('isCompleted', isEqualTo: true);
     return FutureBuilder<QuerySnapshot>(
         future: completedCourse.get(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (snapshot.hasData) {
+          if (snapshot.hasData && snapshot.data!.docs.length != 0) {
             return ListView.builder(
               itemCount: snapshot.data!.docs.length,
               shrinkWrap: true,
@@ -83,16 +85,17 @@ class CompletedCourses extends StatelessWidget {
                 );
               },
             );
-          } else if (snapshot.connectionState == ConnectionState.done &&
-              !snapshot.hasData) {
+          } else if (snapshot.hasData && snapshot.data!.docs.length == 0) {
             return Center(
-              child: Text("No users found."),
-            );
-          } else {
-            return Center(
-              child: CircularProgressIndicator(),
+              child: Text(
+                "No Course found.",
+                style: TextStyle(fontSize: 20),
+              ),
             );
           }
+          return Center(
+            child: CircularProgressIndicator(),
+          );
         });
   }
 }
