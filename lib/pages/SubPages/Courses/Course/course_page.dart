@@ -6,6 +6,7 @@ import 'package:mooc_app/pages/SubPages/Courses/Course/subPages/Forum/forum_page
 import 'package:mooc_app/pages/SubPages/Courses/Course/subPages/Grades/grades_page.dart';
 import 'package:mooc_app/pages/SubPages/Courses/Course/subPages/Overview/overview_page.dart';
 import 'package:mooc_app/pages/SubPages/Courses/Course/subPages/Resources/resources_page.dart';
+import 'package:mooc_app/pages/SubPages/Courses/Course/subPages/Resources/resources_page.dart';
 
 class CoursePage extends StatefulWidget {
   final String courseId;
