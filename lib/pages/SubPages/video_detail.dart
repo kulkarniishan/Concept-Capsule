@@ -8,13 +8,15 @@ class VideoDetail extends StatefulWidget {
   final String userId;
   final String enrolledId;
   final String contentId;
+  final String courseId;
 
   VideoDetail(
       {Key? key,
       required this.videoLink,
       required this.userId,
       required this.enrolledId,
-      required this.contentId})
+      required this.contentId,
+      required this.courseId})
       : super(key: key);
 
   // VideoDetail({Key? key}) : super(key: key);
@@ -29,6 +31,21 @@ class _VideoDetailState extends State<VideoDetail> {
 
   CollectionReference users = FirebaseFirestore.instance.collection('users');
 
+  void completeCourse() async {
+    try {
+      // await users.doc(widget.userId).collection("");
+      users
+          .doc(widget.userId)
+          .collection("enrolledCourses")
+          .doc(widget.enrolledId)
+          .update({"complete": true})
+          .then((value) => print("course completed"))
+          .catchError((err) => print("course completion err: $err"));
+    } catch (error) {
+      print("Failed to get video length: $error");
+    }
+  }
+
   void videoProgressCheck() {
     if (_controller.value.position.inMilliseconds >=
         _controller.value.duration.inMilliseconds * .85) {
@@ -41,7 +58,8 @@ class _VideoDetailState extends State<VideoDetail> {
                 FieldValue.arrayUnion(widget.contentId as dynamic)
           })
           .then((value) => print("completedContent Updated"))
-          .catchError((err) => print("Failed to update completedContent: $err"));
+          .catchError(
+              (err) => print("Failed to update completedContent: $err"));
     }
   }
 
