@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:mooc_app/pages/SubPages/Courses/Course/course_page.dart';
 
 class EnrolledCourses extends StatelessWidget {
   final String userId;
@@ -8,10 +9,12 @@ class EnrolledCourses extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final CollectionReference enrolledCourse = FirebaseFirestore.instance
+    final Query<Map<String, dynamic>> enrolledCourse = FirebaseFirestore
+        .instance
         .collection('users')
         .doc(userId)
-        .collection('enrolledCourse');
+        .collection('enrolledCourses')
+        .where('complete', isEqualTo: true);
     return FutureBuilder<QuerySnapshot>(
       future: enrolledCourse.get(),
       builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -19,6 +22,63 @@ class EnrolledCourses extends StatelessWidget {
           if (snapshot.hasData) {
             print(userId);
             print(snapshot.data!.docs.length);
+            return ListView.builder(
+                itemCount: snapshot.data!.docs.length,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  final DocumentSnapshot enCourse = snapshot.data!.docs[index];
+                  return InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                CoursePage(courseId: enCourse.id)),
+                      );
+                    },
+                    child: Card(
+                      elevation: 5,
+                      color: Colors.white,
+                      shadowColor: Color.fromRGBO(0, 0, 0, 0.25),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(15),
+                            child: Image.network(
+                              enCourse['thumbnail'],
+                              width: 90,
+                              height: 90,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                enCourse['name'],
+                                style: TextStyle(fontSize: 20),
+                              ),
+                              SizedBox(height: 5),
+                              Text(
+                                enCourse['instructor'],
+                                style: TextStyle(
+                                  fontSize: 17,
+                                  color: Color.fromRGBO(0, 0, 0, 0.6),
+                                ),
+                              ),
+                              SizedBox(height: 10),
+                              SizedBox(height: 5),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  );
+                });
           } else {
             return Center(
               child: Text("No users found."),

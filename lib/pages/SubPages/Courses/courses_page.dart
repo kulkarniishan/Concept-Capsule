@@ -15,65 +15,65 @@ class _CoursesPageState extends State<CoursesPage> {
   late User currentUser;
   final FirebaseAuth auth = FirebaseAuth.instance;
 
-  card(context) {
-    return InkWell(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => CoursePage()),
-        );
-      },
-      child: Container(
-        child: Card(
-          elevation: 5.0,
-          margin: EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                child: Image.network(
-                    "https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/118898040/original/870e2763755963f5a300574bbea5977fa8b18460/sell-original-football-and-basketball-teams-jersey.jpg",
-                    width: 100,
-                    height: 100,
-                    fit: BoxFit.fill),
-              ),
-              Column(
-                children: [
-                  Container(
-                    child: Text('items[index].title',
-                        // style: titleTextStyle,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis),
-                    margin: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Container(
-                      margin: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
-                      child: Text(
-                        'items[index].subtitle',
-                        // style: subtitleTextStyle,
-                      ),
-                    ),
-                  ),
-                  // Container(
-                  //   margin: EdgeInsets.all(8.0),
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //     children: [
-                  //       Text(formatter.output.symbolOnLeft, style: priceTextStyle),
-                  //       Text("ADD TO CART", style: addToCardTextStyle)
-                  //     ],
-                  //   ),
-                  // )
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
+  // card(context) {
+  //   return InkWell(
+  //     onTap: () {
+  //       Navigator.push(
+  //         context,
+  //         MaterialPageRoute(builder: (context) => CoursePage()),
+  //       );
+  //     },
+  //     child: Container(
+  //       child: Card(
+  //         elevation: 5.0,
+  //         margin: EdgeInsets.all(8.0),
+  //         child: Column(
+  //           mainAxisSize: MainAxisSize.min,
+  //           children: [
+  //             Container(
+  //               child: Image.network(
+  //                   "https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/118898040/original/870e2763755963f5a300574bbea5977fa8b18460/sell-original-football-and-basketball-teams-jersey.jpg",
+  //                   width: 100,
+  //                   height: 100,
+  //                   fit: BoxFit.fill),
+  //             ),
+  //             Column(
+  //               children: [
+  //                 Container(
+  //                   child: Text('items[index].title',
+  //                       // style: titleTextStyle,
+  //                       maxLines: 2,
+  //                       overflow: TextOverflow.ellipsis),
+  //                   margin: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
+  //                 ),
+  //                 Align(
+  //                   alignment: Alignment.centerLeft,
+  //                   child: Container(
+  //                     margin: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
+  //                     child: Text(
+  //                       'items[index].subtitle',
+  //                       // style: subtitleTextStyle,
+  //                     ),
+  //                   ),
+  //                 ),
+  //                 // Container(
+  //                 //   margin: EdgeInsets.all(8.0),
+  //                 //   child: Row(
+  //                 //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //                 //     children: [
+  //                 //       Text(formatter.output.symbolOnLeft, style: priceTextStyle),
+  //                 //       Text("ADD TO CART", style: addToCardTextStyle)
+  //                 //     ],
+  //                 //   ),
+  //                 // )
+  //               ],
+  //             ),
+  //           ],
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   User user;
   _CoursesPageState(this.user); //constructor
@@ -97,8 +97,12 @@ class _CoursesPageState extends State<CoursesPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: EnrolledCourses(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Courses Enrolled'),
+        centerTitle: true,
+      ),
+      body: EnrolledCourses(
         userId: user.uid,
       ),
     );
