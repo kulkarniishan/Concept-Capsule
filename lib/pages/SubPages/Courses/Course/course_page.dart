@@ -7,14 +7,17 @@ import 'package:mooc_app/pages/SubPages/Courses/Course/subPages/Overview/overvie
 import 'package:mooc_app/pages/SubPages/Courses/Course/subPages/Resources/resources_page.dart';
 
 class CoursePage extends StatefulWidget {
-  CoursePage({Key? key}) : super(key: key);
+  final String courseId;
+  CoursePage({Key? key, required this.courseId}) : super(key: key);
 
   @override
-  _CoursePageState createState() => _CoursePageState();
+  _CoursePageState createState() => _CoursePageState(courseId);
 }
 
 class _CoursePageState extends State<CoursePage> {
   int currentIndex = 0;
+  String courseId;
+  _CoursePageState(this.courseId);
 
   final subpages = [
     OverviewPage(),

@@ -29,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
       } else {
         Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (context) => MainPage()),
+          MaterialPageRoute(builder: (context) => MainPage(user: user)),
           (route) => false,
         );
         print('User is signed in!');
@@ -78,7 +78,10 @@ class _LoginPageState extends State<LoginPage> {
           if (userCredential.user != null) {
             Navigator.pushAndRemoveUntil(
               context,
-              MaterialPageRoute(builder: (context) => MainPage()),
+              MaterialPageRoute(
+                  builder: (context) => MainPage(
+                        user: userCredential.user!,
+                      )),
               (route) => false,
             );
           }

@@ -36,7 +36,10 @@ class _SignUpPageState extends State<SignUpPage> {
         print('User is signed in!');
         Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (context) => MainPage()),
+          MaterialPageRoute(
+              builder: (context) => MainPage(
+                    user: user,
+                  )),
           (route) => false,
         );
       }
