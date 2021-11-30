@@ -69,15 +69,15 @@ class CompletedCourses extends StatelessWidget {
                             ),
                           ),
                           SizedBox(height: 5),
-                          Text(
-                            "With " + enCourse['grade'] + " Grade",
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Color.fromRGBO(0, 0, 0, 0.6),
-                              fontWeight: FontWeight.bold,
-                              fontStyle: FontStyle.italic,
-                            ),
-                          ),
+                          // Text(
+                          //   "With " + enCourse['grade'] + " Grade",
+                          //   style: TextStyle(
+                          //     fontSize: 12,
+                          //     color: Color.fromRGBO(0, 0, 0, 0.6),
+                          //     fontWeight: FontWeight.bold,
+                          //     fontStyle: FontStyle.italic,
+                          //   ),
+                          // ),
                         ],
                       )
                     ],
