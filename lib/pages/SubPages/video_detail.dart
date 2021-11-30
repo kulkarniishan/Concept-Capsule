@@ -12,7 +12,6 @@ class VideoDetail extends StatefulWidget {
 class _VideoDetailState extends State<VideoDetail> {
   late VideoPlayerController _controller;
   late ChewieController _chewieController;
-  late Future<void> _initializeVideoPlayerFuture;
 
   @override
   void initState() {

@@ -17,7 +17,6 @@ class _MainPageState extends State<MainPage> {
   final screens = [
     HomePage(),
     UserProfile(),
-    VideoDetail(),
     CoursesPage(),
   ];
 
@@ -41,12 +40,6 @@ class _MainPageState extends State<MainPage> {
                 Icons.person,
               ),
               label: 'Profile',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.video_call,
-              ),
-              label: 'Video',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.book_online),
