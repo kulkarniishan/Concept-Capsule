@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:mooc_app/Widgets/CompletedCourses.dart';
+import 'package:mooc_app/pages/login_page.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -9,6 +12,29 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  //Firebase Auth
+  final FirebaseAuth auth = FirebaseAuth.instance;
+
+  late User currentUser;
+
+  Future checkAuthentication() async {
+    auth.authStateChanges().listen((User? user) {
+      if (user == null) {
+        print('User is currently signed out!');
+      } else {
+        print('User is signed in!');
+        currentUser = user;
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    this.checkAuthentication();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
