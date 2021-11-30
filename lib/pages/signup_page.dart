@@ -87,7 +87,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
           await users.doc(user?.uid).set({
             'email': emailController.text,
-            'name': nameController  .text,
+            'name': nameController.text,
           });
 
           print(user!.updateDisplayName(nameController.text));
