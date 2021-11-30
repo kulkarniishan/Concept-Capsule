@@ -16,25 +16,6 @@ class _HomePageState extends State<HomePage> {
   //Firebase Auth
   final FirebaseAuth auth = FirebaseAuth.instance;
 
-  late User currentUser;
-
-  Future checkAuthentication() async {
-    auth.authStateChanges().listen((User? user) {
-      if (user == null) {
-        print('User is currently signed out!');
-      } else {
-        print('User is signed in!');
-        currentUser = user;
-      }
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    this.checkAuthentication();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
