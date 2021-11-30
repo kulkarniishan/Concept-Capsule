@@ -34,7 +34,7 @@ class _VideoDetailState extends State<VideoDetail> {
         _controller.value.duration.inMilliseconds * .85) {
       users
           .doc(widget.userId)
-          .collection("enrolledCourse")
+          .collection("enrolledCourses")
           .doc(widget.enrolledId)
           .update({
             "completedContent":
