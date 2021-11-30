@@ -41,7 +41,8 @@ class _VideoDetailState extends State<VideoDetail> {
                 FieldValue.arrayUnion(widget.contentId as dynamic)
           })
           .then((value) => print("completedContent Updated"))
-          .catchError((err) => print("Failed to update completedContent: $err"));
+          .catchError(
+              (err) => print("Failed to update completedContent: $err"));
     }
   }
 
