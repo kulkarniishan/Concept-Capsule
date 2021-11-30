@@ -15,6 +15,9 @@ class _CoursesPageState extends State<CoursesPage> {
   late User currentUser;
   final FirebaseAuth auth = FirebaseAuth.instance;
 
+  User user;
+  _CoursesPageState(this.user);
+
   // card(context) {
   //   return InkWell(
   //     onTap: () {
@@ -75,8 +78,7 @@ class _CoursesPageState extends State<CoursesPage> {
   //   );
   // }
 
-  User user;
-  _CoursesPageState(this.user); //constructor
+  //constructor
 
   // Future checkAuthentication() async {
   //   auth.authStateChanges().listen((User? user) {
@@ -103,7 +105,7 @@ class _CoursesPageState extends State<CoursesPage> {
         centerTitle: true,
       ),
       body: EnrolledCourses(
-        userId: user.uid,
+        user: user,
       ),
     );
   }

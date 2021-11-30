@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
@@ -8,16 +9,20 @@ import 'package:mooc_app/pages/SubPages/Courses/Course/subPages/Resources/resour
 
 class CoursePage extends StatefulWidget {
   final String courseId;
-  CoursePage({Key? key, required this.courseId}) : super(key: key);
+  final User user;
+  CoursePage({Key? key, required this.courseId, required this.user})
+      : super(key: key);
 
   @override
-  _CoursePageState createState() => _CoursePageState(courseId);
+  _CoursePageState createState() => _CoursePageState(this.courseId, this.user);
 }
 
 class _CoursePageState extends State<CoursePage> {
   int currentIndex = 0;
   String courseId;
-  _CoursePageState(this.courseId);
+  User user;
+
+  _CoursePageState(this.courseId, this.user);
 
   final subpages = [
     OverviewPage(),
@@ -28,6 +33,7 @@ class _CoursePageState extends State<CoursePage> {
 
   @override
   Widget build(BuildContext context) {
+    print(courseId);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,

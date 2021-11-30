@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mooc_app/pages/SubPages/Courses/courses_page.dart';
 import 'package:mooc_app/pages/SubPages/Home/home_page.dart';
 import 'package:mooc_app/pages/SubPages/UserProfile/user_profile.dart';
-import 'package:mooc_app/pages/SubPages/video_detail.dart';
+import 'package:mooc_app/Widgets/video_detail.dart';
 
 class MainPage extends StatefulWidget {
   final User user;
@@ -20,7 +20,7 @@ class _MainPageState extends State<MainPage> {
   screens(user) {
     return ([
       HomePage(),
-      UserProfile(),
+      UserProfile(user: user),
       CoursesPage(user: user),
     ]);
   }
@@ -36,7 +36,6 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    print(user);
     final pageContent = Scaffold(
       body: screens(user)[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
