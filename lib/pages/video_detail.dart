@@ -7,7 +7,7 @@ class VideoDetail extends StatefulWidget {
   final String videoLink;
   final String userId;
   final String enrolledId;
-  final String contentId;
+  final int contentId;
   final String courseId;
 
   VideoDetail(
@@ -31,19 +31,21 @@ class _VideoDetailState extends State<VideoDetail> {
 
   CollectionReference users = FirebaseFirestore.instance.collection('users');
 
-  void completeCourse() async {
-    try {
-      // await users.doc(widget.userId).collection("");
-      users
-          .doc(widget.userId)
-          .collection("enrolledCourses")
-          .doc(widget.enrolledId)
-          .update({"complete": true})
-          .then((value) => print("course completed"))
-          .catchError((err) => print("course completion err: $err"));
-    } catch (error) {
-      print("Failed to get video length: $error");
-    }
+  void completeCourse() {
+    users.doc(widget.courseId).get().then((DocumentSnapshot documentSnapshot) {
+      if (documentSnapshot.exists) {
+        Map<String, dynamic> data = documentSnapshot.data() as Map<String, dynamic>;
+        if (data['videos'].length == widget.contentId + 1) {
+          users
+              .doc(widget.userId)
+              .collection("enrolledCourses")
+              .doc(widget.enrolledId)
+              .update({"complete": true})
+              .then((value) => print("course completed"))
+              .catchError((err) => print("course completion err: $err"));
+        }
+      }
+    }).catchError((err) => print("Failed to get video length: $err"));
   }
 
   void videoProgressCheck() {
