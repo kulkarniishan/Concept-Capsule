@@ -2,10 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
-<<<<<<< HEAD
-=======
-import 'package:mooc_app/pages/video_detail.dart';
->>>>>>> 6cfc1a304b923399e4cd8ebaf2eb488fe9495234
 import 'package:mooc_app/pages/login_page.dart';
 import 'dart:async';
 

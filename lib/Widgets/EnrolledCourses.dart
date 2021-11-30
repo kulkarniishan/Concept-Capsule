@@ -90,7 +90,6 @@ class EnrolledCourses extends StatelessWidget {
             child: CircularProgressIndicator(),
           );
         }
-        return Center();
       },
     );
   }

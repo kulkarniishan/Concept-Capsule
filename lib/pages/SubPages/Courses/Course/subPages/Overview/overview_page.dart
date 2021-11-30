@@ -1,22 +1,30 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:mooc_app/pages/video_detail.dart';
 
 class OverviewPage extends StatefulWidget {
-  OverviewPage({Key? key}) : super(key: key);
+  final DocumentSnapshot course;
+  final User user;
+  OverviewPage({Key? key, required this.course, required this.user})
+      : super(key: key);
 
   @override
-  _OverviewPageState createState() => _OverviewPageState();
+  _OverviewPageState createState() =>
+      _OverviewPageState(this.course, this.user);
 }
 
 class _OverviewPageState extends State<OverviewPage> {
   @override
+  DocumentSnapshot course;
+  User user;
+
+  _OverviewPageState(this.course, this.user);
+
   Widget build(BuildContext context) {
-    Card card() {
-      var heading = '\$2300 per month';
-      var subheading = '2 bed, 1 bath, 1300 sqft';
-      var cardImage =
-          NetworkImage('https://source.unsplash.com/random/800x600?house');
-      var supportingText =
-          'Beautiful home to rent, recently refurbished with modern appliances...';
+    Card card(video) {
+      var heading = video['title'];
+      var cardImage = NetworkImage(video['thumbnail']);
       return Card(
         elevation: 4.0,
         child: Column(
@@ -42,20 +50,40 @@ class _OverviewPageState extends State<OverviewPage> {
     }
 
     return Container(
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(22, 30, 22, 0),
-          child: GridView.builder(
-            itemCount: 6,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              childAspectRatio: 8.0 / 10.0,
-              crossAxisCount: 2,
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+            maxWidth: MediaQuery.of(context).size.width,
+            maxHeight: MediaQuery.of(context).size.height * 3 / 5),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(22, 30, 22, 0),
+            child: GridView.builder(
+              itemCount: course['videos'].length,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                childAspectRatio: 8.0 / 10.0,
+                crossAxisCount: 2,
+              ),
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                return InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => VideoDetail(
+                            videoLink: course['videos'][index]['url'],
+                            userId: user.uid,
+                            enrolledId: course.id,
+                            contentId: index,
+                            courseId: course.id),
+                      ),
+                    );
+                  },
+                  child: card(course['videos'][index]),
+                );
+              },
             ),
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) {
-              return card();
-            },
           ),
         ),
       ),
