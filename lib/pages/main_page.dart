@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:mooc_app/pages/SubPages/Courses/courses_page.dart';
 import 'package:mooc_app/pages/SubPages/Home/home_page.dart';
 import 'package:mooc_app/pages/SubPages/UserProfile/user_profile.dart';
-import 'package:mooc_app/Widgets/video_detail.dart';
 
 class MainPage extends StatefulWidget {
   final User user;
