@@ -28,7 +28,10 @@ class _LandingPageState extends State<LandingPage> {
       if (user != null) {
         Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (context) => MainPage()),
+          MaterialPageRoute(
+              builder: (context) => MainPage(
+                    user: user,
+                  )),
           (route) => false,
         );
       } else {
