@@ -52,7 +52,10 @@ class _VideoDetailState extends State<VideoDetail> {
                   .doc(widget.userId)
                   .collection("enrolledCourses")
                   .doc(widget.enrolledId)
-                  .update({"complete": true})
+                  .update({
+                    "complete": true,
+                    "completedTime": Timestamp.fromDate(DateTime.now())
+                  })
                   .then((value) => print("course completed"))
                   .catchError((err) => print("course completion err: $err"));
             }
