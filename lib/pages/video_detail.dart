@@ -9,6 +9,8 @@ class VideoDetail extends StatefulWidget {
   final String enrolledId;
   final int contentId;
   final String courseId;
+  final String videoTitle;
+  final int duration;
 
   VideoDetail(
       {Key? key,
@@ -16,7 +18,9 @@ class VideoDetail extends StatefulWidget {
       required this.userId,
       required this.enrolledId,
       required this.contentId,
-      required this.courseId})
+      required this.courseId,
+      required this.videoTitle,
+      required this.duration})
       : super(key: key);
 
   // VideoDetail({Key? key}) : super(key: key);
@@ -119,14 +123,14 @@ class _VideoDetailState extends State<VideoDetail> {
       appBar: AppBar(
         title: RichText(
           text: TextSpan(
-              text: "Introduction to Photoshop",
+              text: widget.videoTitle,
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
               children: [
                 TextSpan(
-                  text: "\nVideo: 12 min",
+                  text: "\nVideo: ${widget.duration} min",
                   style: TextStyle(
                     fontSize: 16,
                   ),

@@ -72,11 +72,14 @@ class _OverviewPageState extends State<OverviewPage> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => VideoDetail(
-                            videoLink: course['videos'][index]['url'],
-                            userId: user.uid,
-                            enrolledId: course.id,
-                            contentId: index,
-                            courseId: course.id),
+                          videoLink: course['videos'][index]['url'],
+                          userId: user.uid,
+                          enrolledId: course.id,
+                          contentId: index,
+                          courseId: course.id,
+                          videoTitle: course['videos'][index]['title'],
+                          duration: course['videos'][index]['duration'],
+                        ),
                       ),
                     );
                   },
