@@ -18,7 +18,7 @@ class _MainPageState extends State<MainPage> {
   _MainPageState(this.user); //constructor
   screens(user) {
     return ([
-      HomePage(),
+      HomePage(user: user),
       UserProfile(user: user),
       CoursesPage(user: user),
     ]);
