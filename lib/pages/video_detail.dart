@@ -133,6 +133,7 @@ class _VideoDetailState extends State<VideoDetail> {
         leading: IconButton(
           icon: Icon(Icons.chevron_left),
           onPressed: () {
+            _controller.pause();
             Navigator.pop(context);
           },
         ),
