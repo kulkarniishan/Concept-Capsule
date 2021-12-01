@@ -30,21 +30,35 @@ class _VideoDetailState extends State<VideoDetail> {
   late ChewieController _chewieController;
 
   CollectionReference users = FirebaseFirestore.instance.collection('users');
+  CollectionReference course = FirebaseFirestore.instance.collection('course');
 
   void completeCourse() {
-    users.doc(widget.courseId).get().then((DocumentSnapshot documentSnapshot) {
+    course.doc(widget.courseId).get().then((DocumentSnapshot documentSnapshot) {
       if (documentSnapshot.exists) {
         Map<String, dynamic> data =
             documentSnapshot.data() as Map<String, dynamic>;
-        if (data['videos'].length == widget.contentId + 1) {
-          users
-              .doc(widget.userId)
-              .collection("enrolledCourses")
-              .doc(widget.enrolledId)
-              .update({"complete": true})
-              .then((value) => print("course completed"))
-              .catchError((err) => print("course completion err: $err"));
-        }
+        users
+            .doc(widget.userId)
+            .collection("enrolledCourses")
+            .doc(widget.enrolledId)
+            .get()
+            .then((DocumentSnapshot documentSnapshot) {
+          if (documentSnapshot.exists) {
+            Map<String, dynamic> enrolledData =
+                documentSnapshot.data() as Map<String, dynamic>;
+            if (data['videos'].length ==
+                enrolledData['completedContent'].length) {
+              users
+                  .doc(widget.userId)
+                  .collection("enrolledCourses")
+                  .doc(widget.enrolledId)
+                  .update({"complete": true})
+                  .then((value) => print("course completed"))
+                  .catchError((err) => print("course completion err: $err"));
+            }
+          }
+        }).catchError((err) => print(
+                "Failed to get total enrolled completed video length: $err"));
       }
     }).catchError((err) => print("Failed to get video length: $err"));
   }
@@ -57,25 +71,25 @@ class _VideoDetailState extends State<VideoDetail> {
           .collection("enrolledCourses")
           .doc(widget.enrolledId)
           .update({
-            "completedContent":
-                FieldValue.arrayUnion(widget.contentId as dynamic)
+            "completedContent": FieldValue.arrayUnion([widget.contentId])
           })
           .then((value) => print("completedContent Updated"))
           .catchError(
               (err) => print("Failed to update completedContent: $err"));
+
+      completeCourse();
     }
   }
 
   @override
   void initState() {
-    _controller = VideoPlayerController.network(
-        "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4");
+    _controller = VideoPlayerController.network(widget.videoLink);
     _controller.addListener(videoProgressCheck);
     _chewieController = ChewieController(
       videoPlayerController: _controller,
       aspectRatio: 5 / 8,
       autoInitialize: true,
-      autoPlay: false,
+      autoPlay: true,
       looping: true,
       errorBuilder: (context, errorMessage) {
         return Center(
@@ -119,7 +133,7 @@ class _VideoDetailState extends State<VideoDetail> {
         leading: IconButton(
           icon: Icon(Icons.chevron_left),
           onPressed: () {
-            print("back pressed");
+            Navigator.pop(context);
           },
         ),
         toolbarHeight: 70,
