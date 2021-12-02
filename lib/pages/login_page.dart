@@ -120,12 +120,13 @@ class _LoginPageState extends State<LoginPage> {
       },
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-          prefixIcon: Icon(Icons.mail),
-          hintText: "email",
-          hintStyle: TextStyle(
-            color: Colors.white,
-          ),
-          contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15)),
+        prefixIcon: Icon(Icons.mail),
+        hintText: "email",
+        hintStyle: TextStyle(
+          color: Colors.white,
+        ),
+        contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+      ),
     );
 
     final passwordField = TextFormField(

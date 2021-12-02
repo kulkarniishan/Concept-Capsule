@@ -22,64 +22,66 @@ class EnrolledCourses extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasData) {
             return ListView.builder(
-                itemCount: snapshot.data!.docs.length,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) {
-                  final DocumentSnapshot enCourse = snapshot.data!.docs[index];
-                  return InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => CoursePage(
-                                  courseId: enCourse.id,
-                                  user: user,
-                                )),
-                      );
-                    },
-                    child: Card(
-                      elevation: 5,
-                      color: Colors.white,
-                      shadowColor: Color.fromRGBO(0, 0, 0, 0.25),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
+              itemCount: snapshot.data!.docs.length,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                final DocumentSnapshot enCourse = snapshot.data!.docs[index];
+                return InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CoursePage(
+                          courseId: enCourse.id,
+                          user: user,
+                        ),
                       ),
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.all(15),
-                            child: Image.network(
-                              enCourse['thumbnail'],
-                              width: 90,
-                              height: 90,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                enCourse['name'],
-                                style: TextStyle(fontSize: 20),
-                              ),
-                              SizedBox(height: 5),
-                              Text(
-                                enCourse['instructor'],
-                                style: TextStyle(
-                                  fontSize: 17,
-                                  color: Color.fromRGBO(0, 0, 0, 0.6),
-                                ),
-                              ),
-                              SizedBox(height: 10),
-                              SizedBox(height: 5),
-                            ],
-                          )
-                        ],
-                      ),
+                    );
+                  },
+                  child: Card(
+                    elevation: 5,
+                    color: Colors.white,
+                    shadowColor: Color.fromRGBO(0, 0, 0, 0.25),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
                     ),
-                  );
-                });
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.all(15),
+                          child: Image.network(
+                            enCourse['thumbnail'],
+                            width: 90,
+                            height: 90,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              enCourse['name'],
+                              style: TextStyle(fontSize: 20),
+                            ),
+                            SizedBox(height: 5),
+                            Text(
+                              enCourse['instructor'],
+                              style: TextStyle(
+                                fontSize: 17,
+                                color: Color.fromRGBO(0, 0, 0, 0.6),
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                            SizedBox(height: 5),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                );
+              },
+            );
           } else {
             return Center(
               child: Text("No users found."),
