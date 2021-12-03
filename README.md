@@ -22,7 +22,7 @@
 
 ## 🧐 About <a name = "about"></a>
 
-Website designed to accept the input about the states and transtions of a Non-Deterministic Automata (NFA) and to convert it into an equivalent Deterministic Finite Automata (DFA) and visualize it.
+App designed a Massively Open Online Courses (MOOC) Application that can be used by all.
 <br> 
 
 
@@ -34,34 +34,29 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-- [React](https://reactjs.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-
+- [Flutter](https://flutter.dev/)
 
 ### Installing
 
 A step by step series of examples that tell you how to get a development env running.
 
 - Clone this repository
-- Open command line in the cloned folder,
+- Open command line or terminal in the cloned folder
+- Then select the appropriate emulator or device to run the flutter project
   
-  - To install dependencies, run `npm install`
-  
-  - To run the application for development,
-    - run `npm start` in the root folder to start the backend app
-    
-    - then run `npm start` in the client folder to start the frontend app
+  - To run the project, run `flutter run`
+ 
 
-- Open [localhost:3000](localhost:3000) in the browser
+- The window in the selected device will be automatically prompted
 
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#-built-using-a-name--built_usinga)
 
 ## :hammer_and_wrench: Built Using <a name = "built_using"></a>
 
-- [Flutter](https://reactjs.org/) - Frontend App Framework
-- [Firebase](https://tailwindcss.com/) - Backend
-- [Firestore](https://tailwindcss.com/) - Backend
+- [Flutter](https://flutter.dev/) - Frontend App Framework
+- [Firebase](https://firebase.google.com/) - Backend
+- [Firestore](https://firebase.google.com/docs/firestore) - Backend
 
 
 
