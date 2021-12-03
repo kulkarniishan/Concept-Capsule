@@ -52,7 +52,7 @@ class _AllCoursesState extends State<AllCourses> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => CoursePage(
+                              builder: (context) => CourseDescription(
                                 courseId: Courses.id,
                                 user: user,
                               ),
