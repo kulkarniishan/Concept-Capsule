@@ -43,7 +43,7 @@ class _CoursePageState extends State<CoursePage> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Text(
-          'Course',
+          'Course Page',
           style: TextStyle(color: Colors.black),
         ),
       ),
@@ -63,54 +63,29 @@ class _CoursePageState extends State<CoursePage> {
                         course['coverImage'],
                         height: 250,
                       ),
-                      GNav(
-                        rippleColor: (Colors.grey[
-                            800])!, // tab button ripple color when pressed
-                        hoverColor:
-                            (Colors.grey[700])!, // tab button hover color
-                        haptic: true, // haptic feedback
-                        tabBorderRadius: 15,
-                        duration: Duration(
-                            milliseconds: 400), // tab animation duration
-                        gap: 8, // the tab button gap between icon and text
-                        color: Colors.grey[800], // unselected icon color
-                        activeColor:
-                            Colors.blue, // selected icon and text color
-                        iconSize: 24, // tab button icon size
-                        tabBackgroundColor: Colors.blue
-                            .withOpacity(0.2), // selected tab background color
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                        tabMargin:
-                            EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-                        selectedIndex: currentIndex,
-                        onTabChange: (index) {
-                          setState(() {
-                            currentIndex = index;
-                            // print(index);
-                          });
-                        },
-                        tabs: [
-                          GButton(
-                            icon: Icons.library_books_outlined,
-                            text: 'Overview',
+                      Container(
+                        child: Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: Text(
+                            course['description'],
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20.0,
+                            ),
                           ),
-                          GButton(
-                            icon: Icons.grading_outlined,
-                            text: 'Grades',
-                          ),
-                          GButton(
-                            icon: Icons.forum_outlined,
-                            text: 'Forum',
-                          ),
-                          GButton(
-                            icon: Icons.file_copy_outlined,
-                            text: 'Resources',
-                          )
-                        ],
+                        ),
                       ),
                       Container(
-                        child: subpages(course, user)[currentIndex],
+                        child: Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: Text(
+                            "Course Instructor : "+course['instructor'],
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20.0,
+                            ),
+                          ),
+                        ),
                       ),
                     ],
                   ),
