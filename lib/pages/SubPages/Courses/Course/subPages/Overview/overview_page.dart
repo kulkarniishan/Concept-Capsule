@@ -77,7 +77,7 @@ class _OverviewPageState extends State<OverviewPage> {
                           enrolledId: course.id,
                           contentId: index,
                           courseId: course.id,
-                          videoTitle: course['videos'][index]['name'],
+                          videoTitle: course['videos'][index]['title'],
                           duration: course['videos'][index]['duration'],
                         ),
                       ),
