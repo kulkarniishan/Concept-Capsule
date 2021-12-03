@@ -75,90 +75,108 @@ class _CourseDescriptionState extends State<CourseDescription> {
                               final bool courseCompleted =
                                   snapshot.data!['complete'];
                               if (courseCompleted) {
-                                return MaterialButton(
-                                  height: 40,
-                                  color: Colors.lightBlueAccent[100],
-                                  onPressed: () {},
-                                  child: Text(
-                                    "Course Completed",
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      color: Colors.black,
+                                return Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: SizedBox(
+                                    height: 50.0,
+                                    child: MaterialButton(
+                                      height: 40,
+                                      color: Colors.lightBlueAccent[100],
+                                      onPressed: () {},
+                                      child: Text(
+                                        "Course Completed",
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
                                     ),
-                                  ),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20),
                                   ),
                                 );
                               } else {
-                                return MaterialButton(
-                                  height: 40,
-                                  color: Colors.green[300],
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => CoursePage(
-                                            courseId: courseId, user: user),
+                                return Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: SizedBox(
+                                    height: 50.0,
+                                    child: MaterialButton(
+                                      height: 40,
+                                      color: Colors.green[300],
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => CoursePage(
+                                                courseId: courseId, user: user),
+                                          ),
+                                        );
+                                      },
+                                      child: Text(
+                                        "Goto Course",
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          color: Colors.black,
+                                        ),
                                       ),
-                                    );
-                                  },
-                                  child: Text(
-                                    "Goto Course",
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      color: Colors.black,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
                                     ),
-                                  ),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20),
                                   ),
                                 );
                               }
                             } else {
-                              return MaterialButton(
-                                height: 40,
-                                color: Colors.yellow,
-                                onPressed: () {
-                                  FirebaseFirestore.instance
-                                      .collection('users')
-                                      .doc(user.uid)
-                                      .collection('enrolledCourses')
-                                      .doc(courseId)
-                                      .set({
-                                        'complete': false,
-                                        'completedContent': [],
-                                        'completedTime': Timestamp
-                                            .fromMicrosecondsSinceEpoch(0),
-                                        'instructor': course['instructor'],
-                                        'name': course['name'],
-                                        'thumbnail': course['thumbnail']
-                                      }) // <-- Your data
-                                      .then((_) => {
-                                            Navigator.pop(context),
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    CoursePage(
-                                                        courseId: courseId,
-                                                        user: user),
-                                              ),
-                                            ),
-                                          })
-                                      .catchError((error) =>
-                                          print('Add failed: $error'));
-                                },
-                                child: Text(
-                                  "Enroll",
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    color: Colors.black,
+                              return Padding(
+                                padding: const EdgeInsets.all(15.0),
+                                child: SizedBox(
+                                  height: 50.0,
+                                  child: MaterialButton(
+                                    height: 40,
+                                    color: Colors.yellow,
+                                    onPressed: () {
+                                      FirebaseFirestore.instance
+                                          .collection('users')
+                                          .doc(user.uid)
+                                          .collection('enrolledCourses')
+                                          .doc(courseId)
+                                          .set({
+                                            'complete': false,
+                                            'completedContent': [],
+                                            'completedTime': Timestamp
+                                                .fromMicrosecondsSinceEpoch(0),
+                                            'instructor': course['instructor'],
+                                            'name': course['name'],
+                                            'thumbnail': course['thumbnail']
+                                          }) // <-- Your data
+                                          .then((_) => {
+                                                Navigator.pop(context),
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        CoursePage(
+                                                            courseId: courseId,
+                                                            user: user),
+                                                  ),
+                                                ),
+                                              })
+                                          .catchError((error) =>
+                                              print('Add failed: $error'));
+                                    },
+                                    child: Text(
+                                      "Enroll",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
                                   ),
-                                ),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20),
                                 ),
                               );
                             }
@@ -227,16 +245,3 @@ class _CourseDescriptionState extends State<CourseDescription> {
     );
   }
 }
-
-//  Container(
-//                         child: Padding(
-//                           padding: EdgeInsets.all(16.0),
-//                           child: Text(
-//                             course['description'],
-//                             style: TextStyle(
-//                               color: Colors.black,
-//                               fontSize: 20.0,
-//                             ),
-//                           ),
-//                         ),
-//                       ),
