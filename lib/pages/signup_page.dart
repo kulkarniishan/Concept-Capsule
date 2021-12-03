@@ -1,10 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mooc_app/pages/login_page.dart';
-import 'package:mooc_app/pages/signup_page.dart';
 import 'package:mooc_app/pages/main_page.dart';
 import 'package:flutter/gestures.dart';
-import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
