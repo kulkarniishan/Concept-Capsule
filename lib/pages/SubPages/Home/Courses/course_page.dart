@@ -240,17 +240,3 @@ class _CourseDescriptionState extends State<CourseDescription> {
 //                           ),
 //                         ),
 //                       ),
-//                       Container(
-//                         child: Padding(
-//                           padding: EdgeInsets.all(16.0),
-//                           child: Text(
-//                             "Course Instructor : "+course['instructor'],
-//                             style: TextStyle(
-//                               color: Colors.black,
-//                               fontSize: 20.0,
-//                             ),
-//                           ),
-//                         ),
-//                       ),
-
-//final bool userEnrolled = snapshot.data!['complete'];
