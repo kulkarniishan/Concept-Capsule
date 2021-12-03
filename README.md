@@ -2,10 +2,9 @@
 <h1 align="center">MOOC App Development using Flutter </h1>
 <p> Made with love by <a href="https://www.linkedin.com/in/anurag-g-a01531198/" target="_blank">Anurag Ghosh</a>, <a href="https://www.linkedin.com/in/kulkarniishan/" target="_blank">Ishan Kulkarni</a> & <a href="https://www.linkedin.com/in/dhruv-solanki-4a3a491b2/" target="_blank">Dhruv Solanki</a></p>
 
-<h1 align="center">NFA-to-DFA-converter</h1>
 
 <p align="center">
- <img width=200px src="src/utils/Images/logo.png"  alt="Project logo" style='background-color: white'></a>
+ <img width=200px src="assets\logo\logo-no-glow.png"  alt="Project logo" style='background-color: white'></a>
 </p>
 
 
@@ -60,22 +59,22 @@ A step by step series of examples that tell you how to get a development env run
 
 ## :hammer_and_wrench: Built Using <a name = "built_using"></a>
 
-- [React](https://reactjs.org/) - Web Framework
-- [Tailwind CSS](https://tailwindcss.com/) - CSS Framework
-- [GraphViz API](https://github.com/DomParfitt/graphviz-react#readme) - Library for visualization of the DFA
-- [quickchart.io](https://quickchart.io/documentation/graphviz-api/) - API for visualization
+- [Flutter](https://reactjs.org/) - Frontend App Framework
+- [Firebase](https://tailwindcss.com/) - Backend
+- [Firestore](https://tailwindcss.com/) - Backend
+
 
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#-authors-a-name--authorsa)
 
 ## 📦 Packages Used <a name = "packages"></a>
 
-npm packages
+flutter packages
 
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#-authors-a-name--authorsa)
 
 ## 	:pencil2: Authors <a name="authors"></a>
-- [Ishan Kulkarni](https://www.linkedin.com/in/anurag-g-a01531198)
 - [Anurag Ghosh](https://www.linkedin.com/in/kulkarniishan)
-- [Aakshad Thole](https://www.linkedin.com/in/akshad-thole-b756621b2)
+- [Ishan Kulkarni](https://www.linkedin.com/in/anurag-g-a01531198)
+- [Dhruv Solanki](https://www.linkedin.com/in/dhruv-solanki-4a3a491b2/)
