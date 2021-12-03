@@ -7,7 +7,16 @@ class InstructorPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text(instructor),
+      child: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Text(
+          "Course Instructor : " + instructor,
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 20.0,
+          ),
+        ),
+      ),
     );
   }
 }
