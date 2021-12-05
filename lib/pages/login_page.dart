@@ -1,3 +1,4 @@
+//Login Page for Loggin into the App
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mooc_app/pages/signup_page.dart';
@@ -21,20 +22,23 @@ class _LoginPageState extends State<LoginPage> {
   late FirebaseAuth auth;
   //Firebase Auth
 
+  //Checking the condition if the user is SignedIn or not
   checkAuthentication() async {
     await Firebase.initializeApp();
-    auth.authStateChanges().listen((User? user) {
-      if (user == null) {
-        print('User is currently signed out!');
-      } else {
-        Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) => MainPage(user: user)),
-          (route) => false,
-        );
-        print('User is signed in!');
-      }
-    });
+    auth.authStateChanges().listen(
+      (User? user) {
+        if (user == null) {
+          print('User is currently signed out!');
+        } else {
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => MainPage(user: user)),
+            (route) => false,
+          );
+          print('User is signed in!');
+        }
+      },
+    );
   }
 
   void initializeFlutterFire() async {
@@ -79,27 +83,33 @@ class _LoginPageState extends State<LoginPage> {
             Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
-                  builder: (context) => MainPage(
-                        user: userCredential.user!,
-                      )),
+                builder: (context) => MainPage(
+                  user: userCredential.user!,
+                ), // MainPage
+              ), // MaterialPageRoute
               (route) => false,
             );
           }
           print(userCredential);
         } on FirebaseAuthException catch (e) {
+          //Catching the Exceptions
           if (e.code == 'user-not-found') {
             print('No user found for that email.');
+            //printing the messages on the console for Debugging Purpose
           } else if (e.code == 'wrong-password') {
             print('Wrong password provided for that user.');
+            //printing the messages on the console for Debugging Purpose
           }
         }
       }
     }
   }
 
-  //editing Controller
+  // Controller for editable TextField
   final TextEditingController emailController = new TextEditingController();
   final TextEditingController passwordController = new TextEditingController();
+
+  bool _isHidden = true;
 
   @override
   Widget build(BuildContext context) {
@@ -108,6 +118,7 @@ class _LoginPageState extends State<LoginPage> {
     final emailField = TextFormField(
       autofocus: false,
       controller: emailController,
+      //Setting the keyboardType to TextInputType.emailAddress
       keyboardType: TextInputType.emailAddress,
       onSaved: (value) {
         emailController.text = value!;
@@ -116,29 +127,32 @@ class _LoginPageState extends State<LoginPage> {
         if (input == null || input.isEmpty)
           return 'Email Field Cannot Be empty';
         if (!RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$')
+            //Regex for Email Validation
             .hasMatch(input)) return 'Invalid Email Format';
       },
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
+        //Email Icon
         prefixIcon: Icon(Icons.mail),
         hintText: "email",
         hintStyle: TextStyle(
           color: Colors.white,
-        ),
+        ), // TextStyle
         contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-      ),
-    );
+      ), // InputDecoration
+    ); //TextFormField
 
     final passwordField = TextFormField(
       autofocus: false,
       controller: passwordController,
-      obscureText: true,
+      obscureText: _isHidden,
       enableSuggestions: false,
       autocorrect: false,
       onSaved: (value) {
         passwordController.text = value!;
       },
       textInputAction: TextInputAction.next,
+      //Displaying the errors to the users on the App
       validator: (input) {
         if (input == null || input.isEmpty)
           return 'Password Field Cannot Be empty';
@@ -146,12 +160,20 @@ class _LoginPageState extends State<LoginPage> {
         if (input.length < 6) return 'Password must be atleast 6 characters';
       },
       decoration: InputDecoration(
-          prefixIcon: Icon(Icons.password_rounded),
-          hintStyle: TextStyle(
-            color: Colors.white,
+        //Password Icon
+        prefixIcon: Icon(Icons.password_rounded),
+        hintStyle: TextStyle(
+          color: Colors.white,
+        ),
+        hintText: "password",
+        suffixIcon: InkWell(
+          onTap: _togglePasswordView,
+          child: Icon(
+            _isHidden ? Icons.visibility : Icons.visibility_off,
           ),
-          hintText: "password",
-          contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15)),
+        ),
+        contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+      ),
     );
 
     return GestureDetector(
@@ -291,6 +313,14 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
       ),
+    );
+  }
+
+  void _togglePasswordView() {
+    setState(
+      () {
+        _isHidden = !_isHidden;
+      },
     );
   }
 }

@@ -1,3 +1,4 @@
+//Splash Sreen Page
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -29,9 +30,10 @@ class _LandingPageState extends State<LandingPage> {
         Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
-              builder: (context) => MainPage(
-                    user: user,
-                  )),
+            builder: (context) => MainPage(
+              user: user,
+            ), // MainPage
+          ), //MaterialPageRoute
           (route) => false,
         );
       } else {
@@ -42,7 +44,7 @@ class _LandingPageState extends State<LandingPage> {
           (route) => false,
         );
       }
-    });
+    }); //Timer
 
     // await FirebaseAuth.instance.authStateChanges().listen((User? user) {
     //   if (user == null) {
@@ -90,6 +92,7 @@ class _LandingPageState extends State<LandingPage> {
 
   @override
   void dispose() {
+    // ignore: todo
     // TODO: implement dispose
     super.dispose();
     SystemChrome.setSystemUIOverlayStyle(
@@ -107,10 +110,10 @@ class _LandingPageState extends State<LandingPage> {
             Image.asset(
               'assets/logo/logo-no-glow.png',
               scale: 1,
-            ),
+            ), //Image.asset
             SizedBox(
               height: 20,
-            ),
+            ), //SizedBox
             RichText(
               text: TextSpan(
                 children: <TextSpan>[
@@ -121,7 +124,7 @@ class _LandingPageState extends State<LandingPage> {
                         color: Color.fromRGBO(56, 187, 201, 1),
                         fontFamily: 'Open Sans',
                         fontWeight: FontWeight.bold),
-                  ),
+                  ), // TextSpan
                   TextSpan(
                     text: 'Capsule',
                     style: TextStyle(
@@ -129,18 +132,18 @@ class _LandingPageState extends State<LandingPage> {
                         color: Color.fromRGBO(215, 8, 38, 1),
                         fontFamily: 'Open Sans',
                         fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-            )
-          ]),
-    ),
-  );
+                  ), //TextSpan
+                ], // <TextSpan>[]
+              ), // TextSpan
+            ) // RichText
+          ]), // <Widget>[]
+    ), // Container
+  ); // Scaffold
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: splashScreen,
-    );
+    ); // Container
   }
 }
