@@ -14,9 +14,9 @@ class InstructorPage extends StatelessWidget {
           style: TextStyle(
             color: Colors.black,
             fontSize: 20.0,
-          ),
-        ),
-      ),
-    );
+          ), //TextStyle 
+        ), // Text
+      ), // Padding
+    ); // Container
   }
 }

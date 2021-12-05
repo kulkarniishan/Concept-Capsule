@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:line_icons/line_icons.dart';
 import 'package:mooc_app/pages/SubPages/Courses/Course/subPages/Forum/forum_page.dart';
 import 'package:mooc_app/pages/SubPages/Courses/Course/subPages/Grades/grades_page.dart';
 import 'package:mooc_app/pages/SubPages/Courses/Course/subPages/Overview/overview_page.dart';
@@ -53,9 +52,9 @@ class _CoursePageState extends State<CoursePage> {
                 title: Text(
                   course['title'],
                   style: TextStyle(color: Colors.black),
-                ),
+                ), // Text
                 centerTitle: true,
-              ),
+              ), // AppBar
               body: SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -63,7 +62,7 @@ class _CoursePageState extends State<CoursePage> {
                     new Image.network(
                       course['coverImage'],
                       height: 250,
-                    ),
+                    ), // Image.network
                     GNav(
                       rippleColor: (Colors
                           .grey[800])!, // tab button ripple color when pressed
@@ -93,39 +92,39 @@ class _CoursePageState extends State<CoursePage> {
                         GButton(
                           icon: Icons.library_books_outlined,
                           text: 'Overview',
-                        ),
+                        ), //GButton 
                         GButton(
                           icon: Icons.grading_outlined,
                           text: 'Grades',
-                        ),
+                        ), // GButton
                         GButton(
                           icon: Icons.forum_outlined,
                           text: 'Forum',
-                        ),
+                        ), // GButton
                         GButton(
                           icon: Icons.file_copy_outlined,
                           text: 'Resources',
-                        )
+                        ) // GButton
                       ],
-                    ),
+                    ), // GNav
                     Container(
                       child: subpages(course, user)[currentIndex],
-                    ),
+                    ), // Container
                   ],
-                ),
-              ),
-            );
+                ), // Column
+              ), // SingleChildScrollView
+            ); // Scaffold
           } else {
             return Center(
               child: Text("Data not found"),
-            );
+            ); // Center
           }
         } else {
           return Center(
             child: CircularProgressIndicator(),
-          );
+          ); // Center
         }
       },
-    );
+    ); // FutureBuilder
   }
 }

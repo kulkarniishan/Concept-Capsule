@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mooc_app/Widgets/AllCourses.dart';
-import 'package:mooc_app/Widgets/EnrolledCourses.dart';
 
 class HomePage extends StatefulWidget {
   final User user;
@@ -32,8 +31,8 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text("Welcome to ConceptCapsule!"),
         centerTitle: true,
-      ),
+      ), // AppBar
       body: AllCourses(user: user),
-    );
+    ); // Scaffold
   }
 }

@@ -1,3 +1,4 @@
+//Bottom Navigation Bar
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mooc_app/pages/SubPages/Courses/courses_page.dart';
@@ -15,9 +16,11 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   User user;
   int currentIndex = 0;
-  _MainPageState(this.user); //constructor
+  _MainPageState(this.user);
+  //constructor
   screens(user) {
     return ([
+      //Different Profiles
       HomePage(user: user),
       UserProfile(user: user),
       CoursesPage(user: user),
@@ -38,29 +41,31 @@ class _MainPageState extends State<MainPage> {
     final pageContent = Scaffold(
       body: screens(user)[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          currentIndex: currentIndex,
-          onTap: (index) => setState(() => currentIndex = index),
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.home,
-              ),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.person,
-              ),
-              label: 'Profile',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.book_online),
-              label: 'Courses',
-            ),
-          ]),
-    );
+        type: BottomNavigationBarType.fixed,
+        currentIndex: currentIndex,
+        onTap: (index) => setState(() => currentIndex = index),
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home,
+            ), // Icon
+            label: 'Home',
+          ), //BottomNavigationBarItem
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.person,
+            ), // Icon
+            label: 'Profile',
+          ), // BottomNavigationBarItem
+          BottomNavigationBarItem(
+            icon: Icon(Icons.book_online),
+            label: 'Courses',
+          ), // BottomNavigationBarItem
+        ], // <BottomNavigationBarItem>[]
+      ), // BottomNavigationBar
+    ); // Scafflod
 
     return pageContent;
+    //Returning the pageContent
   }
 }

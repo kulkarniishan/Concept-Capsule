@@ -55,16 +55,16 @@ class _AllCoursesState extends State<AllCourses> {
                     onPressed: () {
                       //Navigator.of(context).pop();
                     },
-                  ),
+                  ), // IconButton
                   contentPadding: EdgeInsets.only(left: 25.0),
                   hintText: 'Search by Course Name',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(4.0),
-                  ),
-                ),
-              ),
-            ),
-          ),
+                  ), // OutlineInputBorder
+                ), // ImputDecoration
+              ), // TextField
+            ), // Padding
+          ), // Container
           Center(
             child: Padding(
               padding: EdgeInsets.all(16.0),
@@ -74,10 +74,10 @@ class _AllCoursesState extends State<AllCourses> {
                   color: Colors.black,
                   fontSize: 20.0,
                   fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
+                ), // TextStyle
+              ), // Text
+            ), // Padding
+          ), // Center
           Container(
             child: search
                 ? FutureBuilder(
@@ -100,8 +100,8 @@ class _AllCoursesState extends State<AllCourses> {
                                       builder: (context) => CourseDescription(
                                         courseId: Courses.id,
                                         user: user,
-                                      ),
-                                    ),
+                                      ), // CourseDescription
+                                    ), // MaterialPageRoute
                                   );
                                 },
                                 child: Card(
@@ -110,7 +110,7 @@ class _AllCoursesState extends State<AllCourses> {
                                   shadowColor: Color.fromRGBO(0, 0, 0, 0.25),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15),
-                                  ),
+                                  ), // RoundedRectangleBorder
                                   child: Row(
                                     children: [
                                       Padding(
@@ -120,8 +120,8 @@ class _AllCoursesState extends State<AllCourses> {
                                           width: 90,
                                           height: 90,
                                           fit: BoxFit.cover,
-                                        ),
-                                      ),
+                                        ), // Image.network
+                                      ), // Padding
                                       Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
@@ -129,7 +129,7 @@ class _AllCoursesState extends State<AllCourses> {
                                           Text(
                                             Courses['name'],
                                             style: TextStyle(fontSize: 20),
-                                          ),
+                                          ), // Text
                                           SizedBox(height: 5),
                                           Text(
                                             Courses['instructor'],
@@ -137,30 +137,30 @@ class _AllCoursesState extends State<AllCourses> {
                                               fontSize: 17,
                                               color:
                                                   Color.fromRGBO(0, 0, 0, 0.6),
-                                            ),
-                                          ),
+                                            ), // TextStyle
+                                          ), // Text
                                           SizedBox(height: 10),
                                           SizedBox(height: 5),
                                         ],
-                                      )
+                                      ) // Column
                                     ],
-                                  ),
-                                ),
-                              );
+                                  ), // Row
+                                ), // Card
+                              ); // InkWell
                             },
-                          );
+                          ); // ListView.builder
                         } else {
                           return Center(
                             child: Text("No Courses Found"),
-                          );
+                          ); // Center
                         }
                       } else {
                         return Center(
                           child: CircularProgressIndicator(),
-                        );
+                        ); // Center
                       }
                     },
-                  )
+                  ) // FutureBuilder
                 : FutureBuilder(
                     future: AllCourses.get(),
                     builder: (context, AsyncSnapshot snapshot) {
@@ -181,8 +181,8 @@ class _AllCoursesState extends State<AllCourses> {
                                       builder: (context) => CourseDescription(
                                         courseId: Courses.id,
                                         user: user,
-                                      ),
-                                    ),
+                                      ), // CourseDescription
+                                    ), // MaterialPageRoute
                                   );
                                 },
                                 child: Card(
@@ -191,7 +191,7 @@ class _AllCoursesState extends State<AllCourses> {
                                   shadowColor: Color.fromRGBO(0, 0, 0, 0.25),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15),
-                                  ),
+                                  ), // RoundedRectangleBorder
                                   child: Row(
                                     children: [
                                       Padding(
@@ -201,8 +201,8 @@ class _AllCoursesState extends State<AllCourses> {
                                           width: 90,
                                           height: 90,
                                           fit: BoxFit.cover,
-                                        ),
-                                      ),
+                                        ), // Image.network
+                                      ), // Padding
                                       Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
@@ -210,7 +210,7 @@ class _AllCoursesState extends State<AllCourses> {
                                           Text(
                                             Courses['name'],
                                             style: TextStyle(fontSize: 20),
-                                          ),
+                                          ), // Text
                                           SizedBox(height: 5),
                                           Text(
                                             Courses['instructor'],
@@ -218,33 +218,33 @@ class _AllCoursesState extends State<AllCourses> {
                                               fontSize: 17,
                                               color:
                                                   Color.fromRGBO(0, 0, 0, 0.6),
-                                            ),
-                                          ),
+                                            ), // TextStyle
+                                          ), // Text
                                           SizedBox(height: 10),
                                           SizedBox(height: 5),
                                         ],
-                                      )
+                                      ) // Column
                                     ],
-                                  ),
-                                ),
-                              );
+                                  ), // Row
+                                ), // Card
+                              ); // InkWell
                             },
-                          );
+                          ); //ListView.builder
                         } else {
                           return Center(
                             child: Text("No Courses Found"),
-                          );
+                          ); // Center
                         }
                       } else {
                         return Center(
                           child: CircularProgressIndicator(),
-                        );
+                        ); // Center
                       }
                     },
-                  ),
-          ),
+                  ), // FutureBuilder
+          ), // Container
         ],
-      ),
-    );
+      ), // Column
+    ); // SingleChildScrollView
   }
 }

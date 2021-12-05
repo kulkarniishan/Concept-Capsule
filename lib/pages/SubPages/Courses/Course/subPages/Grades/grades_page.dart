@@ -1,3 +1,4 @@
+// More funtionalities to be added in future
 import 'package:flutter/material.dart';
 
 class GradesPage extends StatefulWidget {
@@ -13,7 +14,7 @@ class _GradesPageState extends State<GradesPage> {
     return Container(
       child: Center(
         child: Text('Grades'),
-      ),
-    );
+      ), // Center
+    ); // Container
   }
 }

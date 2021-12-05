@@ -35,8 +35,8 @@ class EnrolledCourses extends StatelessWidget {
                         builder: (context) => CoursePage(
                           courseId: enCourse.id,
                           user: user,
-                        ),
-                      ),
+                        ), // CoursePage
+                      ), // MaterialPageRoute
                     );
                   },
                   child: Card(
@@ -45,7 +45,7 @@ class EnrolledCourses extends StatelessWidget {
                     shadowColor: Color.fromRGBO(0, 0, 0, 0.25),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
-                    ),
+                    ), //RoundedRectangleBorder
                     child: Row(
                       children: [
                         Padding(
@@ -55,44 +55,44 @@ class EnrolledCourses extends StatelessWidget {
                             width: 90,
                             height: 90,
                             fit: BoxFit.cover,
-                          ),
-                        ),
+                          ), // Image.network
+                        ), // Padding
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               enCourse['name'],
                               style: TextStyle(fontSize: 20),
-                            ),
+                            ), // Text
                             SizedBox(height: 5),
                             Text(
                               enCourse['instructor'],
                               style: TextStyle(
                                 fontSize: 17,
                                 color: Color.fromRGBO(0, 0, 0, 0.6),
-                              ),
-                            ),
+                              ), // TextStyle
+                            ), // Text
                             SizedBox(height: 10),
                             SizedBox(height: 5),
                           ],
-                        )
+                        ) // Column
                       ],
-                    ),
-                  ),
-                );
+                    ), // Row
+                  ), // Card
+                ); // InkWell
               },
-            );
+            ); // ListView.builder
           } else {
             return Center(
               child: Text("No users found."),
-            );
+            ); // Center
           }
         } else {
           return Center(
             child: CircularProgressIndicator(),
-          );
+          ); // Center
         }
       },
-    );
+    ); // FutureBuilder
   }
 }

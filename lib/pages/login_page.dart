@@ -164,17 +164,18 @@ class _LoginPageState extends State<LoginPage> {
         prefixIcon: Icon(Icons.password_rounded),
         hintStyle: TextStyle(
           color: Colors.white,
-        ),
+        ), // TextStyle
         hintText: "password",
         suffixIcon: InkWell(
           onTap: _togglePasswordView,
           child: Icon(
+            //Toggle Password Icons
             _isHidden ? Icons.visibility : Icons.visibility_off,
-          ),
-        ),
+          ), //Icon
+        ), // InkWell
         contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-      ),
-    );
+      ), // InputDecoration
+    ); // TextFormField
 
     return GestureDetector(
       onTap: () {
@@ -191,13 +192,14 @@ class _LoginPageState extends State<LoginPage> {
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
             gradient: LinearGradient(
-                begin: FractionalOffset.topLeft,
-                end: FractionalOffset.bottomRight,
-                colors: [
-                  Color.fromRGBO(13, 147, 145, 1),
-                  Color.fromRGBO(42, 53, 81, 1),
-                ]),
-          ),
+              begin: FractionalOffset.topLeft,
+              end: FractionalOffset.bottomRight,
+              colors: [
+                Color.fromRGBO(13, 147, 145, 1),
+                Color.fromRGBO(42, 53, 81, 1),
+              ],
+            ), // LinearGradient
+          ), // BoxDecoration
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -205,27 +207,29 @@ class _LoginPageState extends State<LoginPage> {
                 Container(
                   padding: EdgeInsets.only(
                     top: MediaQuery.of(context).size.height / 10,
-                  ),
+                  ), // EdgeInsets.only
                   child: Image(
                     image: AssetImage(
                       'assets/logo/logo-no-glow.png',
-                    ),
+                    ), // AssetImage
                     width: 300,
-                  ),
-                ),
+                  ), //Image
+                ), // Container
                 Container(
                   child: Form(
                     key: _formKey,
-                    child: Column(children: [
-                      emailField,
-                      passwordField,
-                    ]),
-                  ),
-                ),
+                    child: Column(
+                      children: [
+                        emailField,
+                        passwordField,
+                      ],
+                    ), // Column
+                  ), // Form
+                ), // Container
                 Container(
                   margin: EdgeInsets.only(
                     top: MediaQuery.of(context).size.height / 20,
-                  ),
+                  ), // EdgeInsets.only
                   child: MaterialButton(
                     height: 40,
                     color: Colors.white,
@@ -235,87 +239,90 @@ class _LoginPageState extends State<LoginPage> {
                       style: TextStyle(
                         fontSize: 18,
                         color: Colors.black,
-                      ),
-                    ),
+                      ), // TextStyle
+                    ), // Text
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                ),
+                    ), // RoundedRectangleBorder
+                  ), //MaterialButton
+                ), // Container
                 Container(
                   margin: EdgeInsets.only(
                     top: MediaQuery.of(context).size.height / 20,
-                  ),
+                  ), // EdgeInsets.only
                   child: RichText(
                     text: TextSpan(
                       children: <TextSpan>[
                         TextSpan(text: 'Don’t have an account? '),
                         TextSpan(
-                            text: 'Sign Up',
-                            style: linkStyle,
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () {
-                                Navigator.pushAndRemoveUntil(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => SignUpPage()),
-                                  (route) => false,
-                                );
-                              }),
-                      ],
-                    ),
-                  ),
-                ),
+                          text: 'Sign Up',
+                          style: linkStyle,
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SignUpPage()),
+                                (route) => false,
+                              );
+                            },
+                        ), // TextSpan
+                      ], // <TextSpan>[]
+                    ), // TextSpan
+                  ), // RichText
+                ), // Container
                 Container(
-                    margin: EdgeInsets.only(
-                      top: MediaQuery.of(context).size.height / 10,
-                      bottom: MediaQuery.of(context).size.height / 50,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                        left: 20,
-                        right: 20,
-                      ),
-                      child: MaterialButton(
-                        height: 50,
-                        minWidth: double.infinity,
-                        color: Colors.white,
-                        onPressed: () {},
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Container(
-                              width: 50.0,
-                              height: 45.0,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: AssetImage(
-                                      "assets/button_icons/google-icon.png"),
-                                ),
-                              ),
-                            ),
-                            Text(
-                              "Sign In With Google",
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ],
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                      ),
-                    )),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
+                  margin: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height / 10,
+                    bottom: MediaQuery.of(context).size.height / 50,
+                  ), // EdgeInsets.only
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      left: 20,
+                      right: 20,
+                    ), //EdgeInsets.only
+                    child: MaterialButton(
+                      height: 50,
+                      minWidth: double.infinity,
+                      color: Colors.white,
+                      onPressed: () {},
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Container(
+                            width: 50.0,
+                            height: 45.0,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage(
+                                    "assets/button_icons/google-icon.png"),
+                              ), // DecorationImage
+                            ), // BoxDecoration
+                          ), //Container
+                          Text(
+                            "Sign In With Google",
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.black,
+                            ), // TextStyle
+                          ), // Text
+                        ],
+                      ), // Row
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ), // RoundedRectangleBorder
+                    ), // MaterialButton
+                  ), // Padding
+                ), // Container
+              ], // <Widget>[]
+            ), // Column
+          ), // SingleChildScrollView
+        ), // Container
+      ), // Scaffold
+    ); //GestureDetector
   }
 
+  //Funtion for toggling between the show Password and Hide Password
   void _togglePasswordView() {
     setState(
       () {

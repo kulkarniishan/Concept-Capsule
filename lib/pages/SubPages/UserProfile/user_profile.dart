@@ -44,7 +44,7 @@ class _UserProfileState extends State<UserProfile> {
       context,
       MaterialPageRoute(
         builder: (context) => LoginPage(),
-      ),
+      ), // MaterialPageRoute
       (route) => false,
     );
   }
@@ -58,105 +58,79 @@ class _UserProfileState extends State<UserProfile> {
         title: Text("User Profile"),
         centerTitle: true,
         automaticallyImplyLeading: false,
-      ),
+      ), // AppBar
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.fromLTRB(22, 30, 22, 0),
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    CircleAvatar(
-                      radius: 38,
-                      backgroundImage: NetworkImage(
-                          user.photoURL ?? 'https://picsum.photos/76'),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            user.displayName.toString(),
-                            style: TextStyle(fontSize: 18),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(top: 5),
-                            child: Text(
-                              user.email.toString(),
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: Color.fromRGBO(0, 0, 0, 0.63),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                GestureDetector(
-                  onTap: logout,
-                  child: Column(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
                     children: [
-                      Icon(
-                        Icons.logout_rounded,
-                        color: Colors.black45,
-                        size: 36.0,
-                      ),
-                      Text("Logout"),
+                      CircleAvatar(
+                        radius: 38,
+                        backgroundImage: NetworkImage(
+                            user.photoURL ?? 'https://picsum.photos/76'),
+                      ), // CircleAvatar
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              user.displayName.toString(),
+                              style: TextStyle(fontSize: 18),
+                            ), // Text
+                            Padding(
+                              padding: EdgeInsets.only(top: 5),
+                              child: Text(
+                                user.email.toString(),
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Color.fromRGBO(0, 0, 0, 0.63),
+                                ), // TextStyle
+                              ), // Text
+                            ), // Padding
+                          ],
+                        ), // Column
+                      ), // Padding
                     ],
-                  ),
-                )
-              ],
-            ),
-            // SizedBox(height: 18),
-            // Text(
-            //   "Account Setting",
-            //   style: TextStyle(
-            //     fontSize: 18,
-            //     fontWeight: FontWeight.bold,
-            //     fontStyle: FontStyle.italic,
-            //   ),
-            // ),
-            // SizedBox(height: 12),
-            // Card(
-            //   elevation: 5,
-            //   color: Colors.white,
-            //   shadowColor: Color.fromRGBO(0, 0, 0, 0.25),
-            //   shape: RoundedRectangleBorder(
-            //     borderRadius: BorderRadius.circular(10),
-            //   ),
-            //   child: Padding(
-            //     padding: EdgeInsets.all(14),
-            //     child: Row(
-            //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //       children: [
-            //         Text("Update Account Details"),
-            //         Icon(Icons.chevron_right),
-            //       ],
-            //     ),
-            //   ),
-            // ),
-            SizedBox(height: 30),
-            Text(
-              "Completed Courses",
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                fontStyle: FontStyle.italic,
-              ),
-            ),
-            SizedBox(height: 16),
-            CompletedCourses(userId: user.uid)
-            // CompletedCourses(userId: "gYPmlMV9iZffTArqlNAr")
-          ]),
-        ),
-      ),
-    );
+                  ), // Row
+                  GestureDetector(
+                    onTap: logout,
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.logout_rounded,
+                          color: Colors.black45,
+                          size: 36.0,
+                        ),
+                        Text("Logout"),
+                      ],
+                    ), // Column
+                  ) // GestureDetector
+                ],
+              ), // Row
+              SizedBox(height: 30),
+              Text(
+                "Completed Courses",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  fontStyle: FontStyle.italic,
+                ), // TextStyle
+              ), // Text
+              SizedBox(height: 16),
+              CompletedCourses(userId: user.uid)
+              // CompletedCourses(userId: "gYPmlMV9iZffTArqlNAr")
+            ],
+          ), // Column
+        ), // Padding
+      ), // SingleChildScrollView
+    ); // Scaffold
   }
 }

@@ -55,9 +55,9 @@ class _CourseDescriptionState extends State<CourseDescription> {
                 title: Text(
                   course['title'],
                   style: TextStyle(color: Colors.black),
-                ),
+                ), // Text
                 centerTitle: true,
-              ),
+              ), // AppBar
               body: SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -65,7 +65,7 @@ class _CourseDescriptionState extends State<CourseDescription> {
                     new Image.network(
                       course['coverImage'],
                       height: 250,
-                    ),
+                    ), // Image.network
                     FutureBuilder(
                       future: userEnrolled.get(),
                       builder:
@@ -88,14 +88,14 @@ class _CourseDescriptionState extends State<CourseDescription> {
                                       style: TextStyle(
                                         fontSize: 18,
                                         color: Colors.black,
-                                      ),
-                                    ),
+                                      ), // TextStyle
+                                    ), // Text
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(20),
-                                    ),
-                                  ),
-                                ),
-                              );
+                                    ), // RoundedRectangleBorder
+                                  ), // MaterialButton
+                                ), // SizedBox
+                              ); // Padding
                             } else {
                               return Padding(
                                 padding: const EdgeInsets.all(15.0),
@@ -111,7 +111,7 @@ class _CourseDescriptionState extends State<CourseDescription> {
                                         MaterialPageRoute(
                                           builder: (context) => CoursePage(
                                               courseId: courseId, user: user),
-                                        ),
+                                        ), // MaterialPageRoute
                                       );
                                     },
                                     child: Text(
@@ -119,14 +119,14 @@ class _CourseDescriptionState extends State<CourseDescription> {
                                       style: TextStyle(
                                         fontSize: 18,
                                         color: Colors.black,
-                                      ),
-                                    ),
+                                      ), // TextStyle
+                                    ), // Text
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(20),
-                                    ),
-                                  ),
-                                ),
-                              );
+                                    ), // RoundedRectangleBorder
+                                  ), // MaterialButton
+                                ), // SizedBox
+                              ); // Padding
                             }
                           } else {
                             return Padding(
@@ -160,33 +160,36 @@ class _CourseDescriptionState extends State<CourseDescription> {
                                                       CoursePage(
                                                           courseId: courseId,
                                                           user: user),
-                                                ),
+                                                ), // MaterialPageRoute
                                               ),
                                             })
-                                        .catchError((error) =>
-                                            print('Add failed: $error'));
+                                        .catchError(
+                                          (error) =>
+                                              // ignore: invalid_return_type_for_catch_error
+                                              print('Add failed: $error'),
+                                        );
                                   },
                                   child: Text(
                                     "Enroll",
                                     style: TextStyle(
                                       fontSize: 18,
                                       color: Colors.black,
-                                    ),
-                                  ),
+                                    ), // TextStyle
+                                  ), // Text
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(20),
-                                  ),
-                                ),
-                              ),
-                            );
+                                  ), // RoundedRectangleBorder
+                                ), // MaterialButton
+                              ), // SizedBox
+                            ); // Padding
                           }
                         } else {
                           return Center(
                             child: CircularProgressIndicator(),
-                          );
+                          ); //Center
                         }
                       },
-                    ),
+                    ), // FutureBuilder
                     GNav(
                       rippleColor: (Colors
                           .grey[800])!, // tab button ripple color when pressed
@@ -207,40 +210,42 @@ class _CourseDescriptionState extends State<CourseDescription> {
                           EdgeInsets.symmetric(vertical: 10, horizontal: 5),
                       selectedIndex: currentIndex,
                       onTabChange: (index) {
-                        setState(() {
-                          currentIndex = index;
-                          // print(index);
-                        });
+                        setState(
+                          () {
+                            currentIndex = index;
+                            // print(index);
+                          },
+                        );
                       },
                       tabs: [
                         GButton(
                           icon: Icons.library_books_outlined,
                           text: 'Course Overview',
-                        ),
+                        ), // GButton 
                         GButton(
                           icon: Icons.person_outline,
                           text: 'Instructors',
-                        ),
+                        ),// GButton 
                       ],
-                    ),
+                    ),// GNav
                     Container(
                       child: subpages(course, user)[currentIndex],
-                    ),
+                    ),// Container
                   ],
-                ),
-              ),
-            );
+                ), // Column
+              ), // SingleChildScrollView
+            ); // Scaffold
           } else {
             return Center(
               child: Text("Data not found"),
-            );
+            ); // Center
           }
         } else {
           return Center(
             child: CircularProgressIndicator(),
-          );
+          ); // Center
         }
       },
-    );
+    ); // FutureBuilder
   }
 }

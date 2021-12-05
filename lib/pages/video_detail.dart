@@ -1,3 +1,4 @@
+//Video Page
 import 'package:chewie/chewie.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -33,41 +34,57 @@ class _VideoDetailState extends State<VideoDetail> {
   late VideoPlayerController _controller;
   late ChewieController _chewieController;
 
+  //Creating Collection Reference for both the collection
   CollectionReference users = FirebaseFirestore.instance.collection('users');
   CollectionReference course = FirebaseFirestore.instance.collection('course');
 
+  //Logic for the Course to be Completed
   void completeCourse() {
-    course.doc(widget.courseId).get().then((DocumentSnapshot documentSnapshot) {
-      if (documentSnapshot.exists) {
-        Map<String, dynamic> data =
-            documentSnapshot.data() as Map<String, dynamic>;
-        users
-            .doc(widget.userId)
-            .collection("enrolledCourses")
-            .doc(widget.enrolledId)
-            .get()
-            .then((DocumentSnapshot documentSnapshot) {
-          if (documentSnapshot.exists) {
-            Map<String, dynamic> enrolledData =
-                documentSnapshot.data() as Map<String, dynamic>;
-            if (data['videos'].length ==
-                enrolledData['completedContent'].length) {
-              users
-                  .doc(widget.userId)
-                  .collection("enrolledCourses")
-                  .doc(widget.enrolledId)
-                  .update({
-                    "complete": true,
-                    "completedTime": Timestamp.fromDate(DateTime.now())
-                  })
-                  .then((value) => print("course completed"))
-                  .catchError((err) => print("course completion err: $err"));
-            }
-          }
-        }).catchError((err) => print(
-                "Failed to get total enrolled completed video length: $err"));
-      }
-    }).catchError((err) => print("Failed to get video length: $err"));
+    course.doc(widget.courseId).get().then(
+      (DocumentSnapshot documentSnapshot) {
+        if (documentSnapshot.exists) {
+          Map<String, dynamic> data =
+              documentSnapshot.data() as Map<String, dynamic>;
+          users
+              .doc(widget.userId)
+              .collection("enrolledCourses")
+              .doc(widget.enrolledId)
+              .get()
+              .then(
+            (DocumentSnapshot documentSnapshot) {
+              if (documentSnapshot.exists) {
+                Map<String, dynamic> enrolledData =
+                    documentSnapshot.data() as Map<String, dynamic>;
+                if (data['videos'].length ==
+                    enrolledData['completedContent'].length) {
+                  users
+                      .doc(widget.userId)
+                      .collection("enrolledCourses")
+                      .doc(widget.enrolledId)
+                      .update(
+                        {
+                          "complete": true,
+                          "completedTime": Timestamp.fromDate(DateTime.now())
+                        },
+                      )
+                      .then((value) => print("course completed"))
+                      .catchError(
+                          (err) => print("course completion err: $err"));
+                }
+              }
+            },
+            // ignore: invalid_return_type_for_catch_error
+          ).catchError(
+            // ignore: invalid_return_type_for_catch_error
+            (err) => print(
+                "Failed to get total enrolled completed video length: $err"),
+          );
+        }
+      },
+    ).catchError(
+      // ignore: invalid_return_type_for_catch_error
+      (err) => print("Failed to get video length: $err"),
+    );
   }
 
   void videoProgressCheck() {
@@ -94,7 +111,7 @@ class _VideoDetailState extends State<VideoDetail> {
     _controller.addListener(videoProgressCheck);
     _chewieController = ChewieController(
       videoPlayerController: _controller,
-      aspectRatio: 5 / 8,
+      aspectRatio: 4 / 3,
       autoInitialize: true,
       autoPlay: true,
       looping: true,
@@ -103,10 +120,10 @@ class _VideoDetailState extends State<VideoDetail> {
           child: Text(
             errorMessage,
             style: TextStyle(color: Colors.white),
-          ),
-        );
+          ), // Text
+        ); // Center
       },
-    );
+    ); // ChewieController
 
     super.initState();
   }
@@ -123,38 +140,39 @@ class _VideoDetailState extends State<VideoDetail> {
       appBar: AppBar(
         title: RichText(
           text: TextSpan(
-              text: widget.videoTitle,
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-              children: [
-                TextSpan(
-                  text: "\nVideo: ${widget.duration} min",
-                  style: TextStyle(
-                    fontSize: 16,
-                  ),
-                )
-              ]),
-        ),
+            text: widget.videoTitle,
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ), // TextStyle
+            children: [
+              TextSpan(
+                text: "\nVideo: ${widget.duration} min",
+                style: TextStyle(
+                  fontSize: 16,
+                ), // TextStyle
+              ) // TextSpan
+            ],
+          ), // TextSpan
+        ), // RichText
         leading: IconButton(
           icon: Icon(Icons.chevron_left),
           onPressed: () {
             _controller.pause();
             Navigator.pop(context);
           },
-        ),
+        ), // IconButton
         toolbarHeight: 70,
-      ),
+      ), // AppBar
       body: Column(
         children: [
           SizedBox(height: 16),
           Container(
             height: 300,
             child: Chewie(controller: _chewieController),
-          ),
+          ), // Container
         ],
-      ),
-    );
+      ), // Column
+    ); // Scaffold
   }
 }

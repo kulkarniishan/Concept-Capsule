@@ -1,3 +1,4 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -31,29 +32,25 @@ class _OverviewPageState extends State<OverviewPage> {
           children: [
             ListTile(
               title: Text(heading),
-            ),
+            ), // ListTile
             Container(
               height: 100.0,
               child: Ink.image(
                 image: cardImage,
                 fit: BoxFit.cover,
-              ),
-            ),
-            // Container(
-            //   padding: EdgeInsets.all(16.0),
-            //   alignment: Alignment.centerLeft,
-            //   child: Text(supportingText),
-            // ),
+              ), // Inl.Image
+            ), // Conatiner
           ],
-        ),
-      );
+        ), // Column
+      ); // Card
     }
 
     return Container(
       child: ConstrainedBox(
         constraints: BoxConstraints(
-            maxWidth: MediaQuery.of(context).size.width,
-            maxHeight: MediaQuery.of(context).size.height * 3 / 5),
+          maxWidth: MediaQuery.of(context).size.width,
+          maxHeight: MediaQuery.of(context).size.height * 3 / 5,
+        ), // BoxConstraints
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.fromLTRB(22, 30, 22, 0),
@@ -62,7 +59,7 @@ class _OverviewPageState extends State<OverviewPage> {
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 childAspectRatio: 8.0 / 10.0,
                 crossAxisCount: 2,
-              ),
+              ), // SliverGridDelegateWithFixedCrossAxisCount
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
@@ -79,17 +76,17 @@ class _OverviewPageState extends State<OverviewPage> {
                           courseId: course.id,
                           videoTitle: course['videos'][index]['title'],
                           duration: course['videos'][index]['duration'],
-                        ),
-                      ),
+                        ), // VideoDetail
+                      ), // MaterialPageRoute
                     );
                   },
                   child: card(course['videos'][index]),
-                );
+                ); // InkWell
               },
-            ),
-          ),
-        ),
-      ),
-    );
+            ), // GridView.builder
+          ), // Padding
+        ), // SingleChildScrollView
+      ), // ConstrainedBox
+    ); // Container
   }
 }

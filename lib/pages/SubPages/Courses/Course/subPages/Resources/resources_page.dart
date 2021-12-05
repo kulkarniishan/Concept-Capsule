@@ -1,3 +1,4 @@
+//More Functionalities to be added in the Future
 import 'package:flutter/material.dart';
 
 class ResourcesPage extends StatefulWidget {
@@ -13,7 +14,7 @@ class _ResourcesPageState extends State<ResourcesPage> {
     return Container(
       child: Center(
         child: Text('Resources'),
-      ),
-    );
+      ), // Center
+    ); // Container
   }
 }
