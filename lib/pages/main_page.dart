@@ -56,7 +56,7 @@ class _MainPageState extends State<MainPage> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.book_online),
-              label: 'Course',
+              label: 'Courses',
             ),
           ]),
     );
