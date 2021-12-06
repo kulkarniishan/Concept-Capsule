@@ -20,7 +20,7 @@ class EnrolledCourses extends StatelessWidget {
       future: enrolledCourse.get(),
       builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          if (snapshot.hasData) {
+          if (snapshot.hasData && snapshot.data!.docs.length != 0) {
             return ListView.builder(
               itemCount: snapshot.data!.docs.length,
               shrinkWrap: true,
@@ -84,7 +84,7 @@ class EnrolledCourses extends StatelessWidget {
             ); // ListView.builder
           } else {
             return Center(
-              child: Text("No users found."),
+              child: Text("No Course Enrolled."),
             ); // Center
           }
         } else {
