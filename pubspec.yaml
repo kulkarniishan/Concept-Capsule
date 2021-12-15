@@ -11,8 +11,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  chewie: <latest_version>
-  video_player: <latest_version>
+  chewie: 
+  video_player: 
   firebase_core: ^1.10.0
   flutter_signin_button: ^2.0.0
   gestures: ^0.0.1
