@@ -56,7 +56,26 @@ A step by step series of examples that tell you how to get a development env run
 
 ## 📦 Packages Used <a name = "packages"></a>
 
-flutter packages
+Flutter Packages
+
+| Package Name     | Version |
+| ----------- | ----------- |
+| flutter    |       |
+|chewie ||
+|video_player ||
+|firebase_core| 1.10.0|
+|flutter_signin_button| 2.0.0|
+|gestures|0.0.1|
+|flutter_linkify|5.0.2|
+|cupertino_icons|1.0.2|
+|flutter_svg|0.23.0+1|
+|google_nav_bar|5.0.5|
+|firebase_auth|3.2.0
+|line_icons|2.0.0|
+|cloud_firestore| 3.1.0|
+|date_format|2.0.4|
+|material_floating_search_bar| 0.2.6|
+
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#-authors-a-name--authorsa)
 
