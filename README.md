@@ -60,9 +60,9 @@ Flutter Packages
 
 | Package Name     | Version |
 | ----------- | ----------- |
-| flutter    |       |
-|chewie ||
-|video_player ||
+| flutter    |   1.0.0    |
+|chewie |1.2.2|
+|video_player |2.2.7|
 |firebase_core| 1.10.0|
 |flutter_signin_button| 2.0.0|
 |gestures|0.0.1|
