@@ -60,7 +60,7 @@ Flutter Packages
 
 | Package Name     | Version |
 | ----------- | ----------- |
-| flutter    |   1.0.0    |
+| flutter    |   2.8.0    |
 |chewie |1.2.2|
 |video_player |2.2.7|
 |firebase_core| 1.10.0|
